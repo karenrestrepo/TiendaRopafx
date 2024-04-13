@@ -2,7 +2,7 @@ package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model;
 
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
-public class Producto /*implements IProducto */{
+public abstract class Producto /*implements IProducto */{
     private String nombre;
     private String referencia;
     private TipoCliente tipoCliente;

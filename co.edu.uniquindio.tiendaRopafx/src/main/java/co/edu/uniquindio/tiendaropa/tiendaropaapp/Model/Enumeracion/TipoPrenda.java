@@ -1,4 +1,9 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion;
 
-public class TipoPrenda {
+public enum TipoPrenda {
+    PANTALON,
+    BLUSA,
+    VESTIDO,
+    CGAQUETA,
+    CAMISA
 }

@@ -1,4 +1,9 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion;
 
-public class TipoJoyeria {
+public enum TipoJoyeria {
+    ANILLO,
+    MANILLA,
+    COLLAR,
+    ARETES
+
 }
