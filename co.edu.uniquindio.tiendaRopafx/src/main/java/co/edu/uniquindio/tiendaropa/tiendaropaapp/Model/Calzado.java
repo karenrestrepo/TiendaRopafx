@@ -1,9 +1,14 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model;
 
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder.CalzadoBuilder;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
 public class Calzado extends Producto{
     private TipoCalzado tipoCalzado;
+
+    public static CalzadoBuilder builder() {
+        return new CalzadoBuilder();
+    }
 
     /*Constructor*/
 

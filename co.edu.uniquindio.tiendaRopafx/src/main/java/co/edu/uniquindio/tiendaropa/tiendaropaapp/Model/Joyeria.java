@@ -1,9 +1,14 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model;
 
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder.JoyeriaBuilder;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
 public class Joyeria extends Producto {
     private TipoJoyeria tipoJoyeria;
+
+    public static JoyeriaBuilder builder() {
+        return new JoyeriaBuilder();
+    }
 
     /*Constructor*/
 
