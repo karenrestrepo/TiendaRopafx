@@ -10,11 +10,11 @@ import java.util.Date;
 public class ClienteBuilder {
     protected String nombreCompleto;
     protected String cedula;
-    protected Sexo sexo;
-    protected long telefono;
-    protected int productosComprados;
-    protected Date fechaUltimaCompra;
-    protected MetodoPago metodoPago;
+    protected String sexo;
+    protected String telefono;
+    protected String productosComprados;
+    protected String fechaUltimaCompra;
+    protected String metodoPago;
 
     public ClienteBuilder nombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
@@ -26,27 +26,27 @@ public class ClienteBuilder {
         return this;
     }
 
-    public ClienteBuilder sexo(Sexo sexo) {
+    public ClienteBuilder sexo(String sexo) {
         this.sexo = sexo;
         return this;
     }
 
-    public ClienteBuilder telefono(Long telefono) {
+    public ClienteBuilder telefono(String telefono) {
         this.telefono = telefono;
         return this;
     }
 
-    public ClienteBuilder productosComprado(int productosComprados) {
+    public ClienteBuilder productosComprado(String productosComprados) {
         this.productosComprados = productosComprados;
         return this;
     }
 
-    public ClienteBuilder fechaUltimaCompra(Date fechaUltimaCompra) {
+    public ClienteBuilder fechaUltimaCompra(String fechaUltimaCompra) {
         this.fechaUltimaCompra = fechaUltimaCompra;
         return this;
     }
 
-    public ClienteBuilder metodoPago(MetodoPago metodoPago) {
+    public ClienteBuilder metodoPago(String metodoPago) {
         this.metodoPago = metodoPago;
         return this;
     }

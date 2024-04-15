@@ -4,16 +4,17 @@ import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.*;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
 import java.util.Date;
+import java.util.List;
 
 public class  ModelFactory {
-    private static ModelFactory modelFactory;
+    public static ModelFactory modelFactory;
 
     private Tienda tienda;
 
 
 
     /*Constructor*/
-    private ModelFactory(){
+    public ModelFactory(){
         tienda = new Tienda();
         inicializarDatos();
 
@@ -105,47 +106,70 @@ public class  ModelFactory {
                 .tipoCalzado(TipoCalzado.TENIS)
                 .build();
 
-        Cliente cliente1 =  Cliente.builder()
+        Cliente cliente1 = Cliente.builder()
                 .nombreCompleto("Katherine Mora")
                 .cedula("49950")
-                .sexo(Sexo.FEMENINO)
-                .telefono(737559L)
-                .productosComprado(5)
-                .fechaUltimaCompra(new Date(2023, 05, 16))
-                .metodoPago(MetodoPago.EFECTIVO)
+                .sexo("Femenino")
+                .telefono("737559")
+                .productosComprado("5")
+                .fechaUltimaCompra("16/05/2023")
+                .metodoPago("Efectivo")
                 .build();
 
-        Cliente cliente2 =  Cliente.builder()
+        Cliente cliente2 = Cliente.builder()
                 .nombreCompleto("Esteban Cruz")
                 .cedula("41150")
-                .sexo(Sexo.MASCULINO)
-                .telefono(739539L)
-                .productosComprado(15)
-                .fechaUltimaCompra(new Date(2024, 04, 13))
-                .metodoPago(MetodoPago.TARJETA)
+                .sexo("Masculino")
+                .telefono("739539")
+                .productosComprado("15")
+                .fechaUltimaCompra("12/04/2024")
+                .metodoPago("Tarjeta")
                 .build();
 
-        Empleado empleado1 =  Empleado.builder()
+        Empleado empleado1 = Empleado.builder()
                 .nombreCompleto("Ana Marin")
                 .cedula("41240")
-                .sexo(Sexo.FEMENINO)
-                .telefono(737364L)
+                .sexo("Femenino")
+                .telefono("737364")
                 .correo("ana@gmail.com")
-                .salario(1300000)
-                .tipoContrato(TipoContrato.HORAS)
-                .horasTrabajo(6)
+                .salario("1300000")
+                .tipoContrato("Horas")
+                .horasTrabajo("6")
                 .build();
 
-        Empleado empleado2 =  Empleado.builder()
+        Empleado empleado2 = Empleado.builder()
                 .nombreCompleto("Julio Perez")
                 .cedula("10685")
-                .sexo(Sexo.MASCULINO)
-                .telefono(737994L)
+                .sexo("Masculino")
+                .telefono("737994")
                 .correo("julio@gmail.com")
-                .salario(1500000)
-                .tipoContrato(TipoContrato.TIEMPO_COMPLETO)
-                .horasTrabajo(8)
+                .salario("1500000")
+                .tipoContrato("Tiempo completo")
+                .horasTrabajo("8")
                 .build();
 
+        tienda.getListaClientes().add(cliente1);
+        tienda.getListaClientes().add(cliente2);
+        tienda.getListaEmpleados().add(empleado1);
+        tienda.getListaEmpleados().add(empleado2);
+
+    }
+
+    public List<Cliente> obtenerClientes() {
+        return tienda.getListaClientes();
+    }
+
+    public List<Empleado> obtenerEmpleados() {
+        return tienda.getListaEmpleados();
+    }
+
+    public boolean agregarCliente(Cliente cliente) {
+        return tienda.agregarCliente(cliente);
+
+
+    }
+
+    public boolean agregarEmpleado(Empleado empleado) {
+        return tienda.agregarEmpleado(empleado);
     }
 }

@@ -5,15 +5,15 @@ import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 public abstract class Persona {
     private String nombreCompleto;
     private String cedula;
-    private Sexo sexo;
-    private long telefono;
+    private String sexo;
+    private String telefono;
     private Cliente cliente;
     private Empleado empleado;
     Tienda ownedByTienda;
 
     /* Constructor */
 
-    public Persona(String nombreCompleto, String cedula, Sexo sexo, long telefono) {
+    public Persona(String nombreCompleto, String cedula, String sexo, String telefono) {
         this.nombreCompleto = nombreCompleto;
         this.cedula = cedula;
         this.sexo = sexo;
@@ -40,19 +40,19 @@ public abstract class Persona {
         this.cedula = cedula;
     }
 
-    public Sexo getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(Sexo sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Cliente extends Persona{
-    private int prendasCompradas;
-    private Date fechaUltimaCompra;
-    private MetodoPago metodoPago;
+    private String prendasCompradas;
+    private String fechaUltimaCompra;
+    private String metodoPago;
     private List<Compra> comprasAsociadas = new ArrayList<>();
 
     public static ClienteBuilder builder() {
@@ -22,7 +22,7 @@ public class Cliente extends Persona{
 
     /* Constructor Vacío */
 
-    public Cliente(String nombreCompleto, String cedula, Sexo sexo, long telefono, int prendasCompradas, Date fechaUltimaCompra, MetodoPago metodoPago) {
+    public Cliente(String nombreCompleto, String cedula, String sexo, String telefono, String prendasCompradas, String fechaUltimaCompra, String metodoPago) {
         super(nombreCompleto, cedula, sexo, telefono);
         this.prendasCompradas = prendasCompradas;
         this.fechaUltimaCompra = fechaUltimaCompra;
@@ -35,27 +35,27 @@ public class Cliente extends Persona{
     }
 
     /* Getters and Setters */
-    public int getPrendasCompradas() {
+    public String getPrendasCompradas() {
         return prendasCompradas;
     }
 
-    public void setPrendasCompradas(int prendasCompradas) {
+    public void setPrendasCompradas(String prendasCompradas) {
         this.prendasCompradas = prendasCompradas;
     }
 
-    public Date getFechaUltimaCompra() {
+    public String getFechaUltimaCompra() {
         return fechaUltimaCompra;
     }
 
-    public void setFechaUltimaCompra(Date fechaUltimaCompra) {
+    public void setFechaUltimaCompra(String fechaUltimaCompra) {
         this.fechaUltimaCompra = fechaUltimaCompra;
     }
 
-    public MetodoPago getMetodoPago() {
+    public String getMetodoPago() {
         return metodoPago;
     }
 
-    public void setMetodoPago(MetodoPago metodoPago) {
+    public void setMetodoPago(String metodoPago) {
         this.metodoPago = metodoPago;
     }
 

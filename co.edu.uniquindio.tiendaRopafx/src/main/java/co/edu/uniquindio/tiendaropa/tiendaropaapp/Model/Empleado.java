@@ -6,9 +6,9 @@ import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
 public class Empleado extends Persona {
     private String correo;
-    private double salario;
-    private TipoContrato tipoContrato;
-    private int horasTrabajo;
+    private String salario;
+    private String tipoContrato;
+    private String horasTrabajo;
     Tienda ownedByTienda;
 
     public static EmpleadoBuilder builder() {
@@ -17,7 +17,7 @@ public class Empleado extends Persona {
 
     /* Constructor */
 
-    public Empleado(String nombreCompleto, String cedula, Sexo sexo, long telefono, String correo, double salario, TipoContrato tipoContrato, int horasTrabajo) {
+    public Empleado(String nombreCompleto, String cedula, String sexo, String telefono, String correo, String salario, String tipoContrato, String horasTrabajo) {
         super(nombreCompleto, cedula, sexo, telefono);
         this.correo = correo;
         this.salario = salario;
@@ -37,27 +37,27 @@ public class Empleado extends Persona {
         this.correo = correo;
     }
 
-    public double getSalario() {
+    public String getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
+    public void setSalario(String salario) {
         this.salario = salario;
     }
 
-    public TipoContrato getTipoContrato() {
+    public String getTipoContrato() {
         return tipoContrato;
     }
 
-    public void setTipoContrato(TipoContrato tipoContrato) {
+    public void setTipoContrato(String tipoContrato) {
         this.tipoContrato = tipoContrato;
     }
 
-    public int getHorasTrabajo() {
+    public String getHorasTrabajo() {
         return horasTrabajo;
     }
 
-    public void setHorasTrabajo(int horasTrabajo) {
+    public void setHorasTrabajo(String horasTrabajo) {
         this.horasTrabajo = horasTrabajo;
     }
 

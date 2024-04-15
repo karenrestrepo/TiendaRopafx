@@ -75,4 +75,49 @@ public class Tienda /*implements ITienda*/ {
                 '}';
     }
 
+    public boolean agregarCliente(Cliente nuevoCliente) {
+        Cliente clienteEncontrado = obtenerCliente(nuevoCliente.getCedula());
+        if (clienteEncontrado == null) {
+            getListaClientes().add(nuevoCliente);
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    private Cliente obtenerCliente(String cedula) {
+        Cliente cliente = null;
+
+        for (Cliente cliente1 : getListaClientes()) {
+            if (cliente1.getCedula().equalsIgnoreCase(cedula)) {
+                cliente = cliente1;
+                break;
+            }
+        }
+        return cliente;
+    }
+
+    public boolean agregarEmpleado(Empleado nuevoEmpleado) {
+        Empleado empleadoEncontrado = obtenerEmpleado(nuevoEmpleado.getCedula());
+        if (empleadoEncontrado == null) {
+            getListaEmpleados().add(nuevoEmpleado);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    private Empleado obtenerEmpleado(String cedula) {
+        Empleado empleado = null;
+
+        for (Empleado empleado1 : getListaEmpleados()) {
+            if (empleado1.getCedula().equalsIgnoreCase(cedula)) {
+                empleado = empleado1;
+                break;
+            }
+        }
+        return empleado;
+
+    }
 }

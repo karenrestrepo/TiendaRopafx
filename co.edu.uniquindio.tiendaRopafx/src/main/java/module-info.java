@@ -4,5 +4,7 @@ module co.edu.uniquindio.tiendaropa.tiendaropaapp {
 
 
     opens co.edu.uniquindio.tiendaropa.tiendaropaapp to javafx.fxml;
+    opens co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller;
+    exports co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller;
     exports co.edu.uniquindio.tiendaropa.tiendaropaapp;
 }

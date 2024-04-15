@@ -8,12 +8,12 @@ import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.TipoContrato
 public class EmpleadoBuilder {
     protected String nombreCompleto;
     protected String cedula;
-    protected Sexo sexo;
-    protected long telefono;
+    protected String sexo;
+    protected String telefono;
     protected String correo;
-    protected double salario;
-    protected TipoContrato tipoContrato;
-    protected int horasTrabajo;
+    protected String salario;
+    protected String tipoContrato;
+    protected String horasTrabajo;
 
     public EmpleadoBuilder nombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
@@ -25,12 +25,12 @@ public class EmpleadoBuilder {
         return this;
     }
 
-    public EmpleadoBuilder sexo(Sexo sexo) {
+    public EmpleadoBuilder sexo(String sexo) {
         this.sexo = sexo;
         return this;
     }
 
-    public EmpleadoBuilder telefono(Long telefono) {
+    public EmpleadoBuilder telefono(String telefono) {
         this.telefono = telefono;
         return this;
     }
@@ -40,17 +40,17 @@ public class EmpleadoBuilder {
         return this;
     }
 
-    public EmpleadoBuilder salario(double salario) {
+    public EmpleadoBuilder salario(String salario) {
         this.salario = salario;
         return this;
     }
 
-    public EmpleadoBuilder tipoContrato(TipoContrato tipoContrato) {
+    public EmpleadoBuilder tipoContrato(String tipoContrato) {
         this.tipoContrato = tipoContrato;
         return this;
     }
 
-    public EmpleadoBuilder horasTrabajo(int horasTrabajo) {
+    public EmpleadoBuilder horasTrabajo(String horasTrabajo) {
         this.horasTrabajo = horasTrabajo;
         return this;
     }
