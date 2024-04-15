@@ -1,5 +1,7 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder;
 
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Calzado;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Cliente;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.MetodoPago;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Sexo;
 
@@ -47,5 +49,9 @@ public class ClienteBuilder {
     public ClienteBuilder metodoPago(MetodoPago metodoPago) {
         this.metodoPago = metodoPago;
         return this;
+    }
+
+    public Cliente build(){
+        return new Cliente(nombreCompleto, cedula, sexo, telefono, productosComprados, fechaUltimaCompra, metodoPago);
     }
 }

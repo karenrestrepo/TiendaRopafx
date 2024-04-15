@@ -1,5 +1,7 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model;
 
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder.CalzadoBuilder;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder.EmpleadoBuilder;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
 public class Empleado extends Persona {
@@ -9,7 +11,20 @@ public class Empleado extends Persona {
     private int horasTrabajo;
     Tienda ownedByTienda;
 
+    public static EmpleadoBuilder builder() {
+        return new EmpleadoBuilder();
+    }
+
     /* Constructor */
+
+    public Empleado(String nombreCompleto, String cedula, Sexo sexo, long telefono, String correo, double salario, TipoContrato tipoContrato, int horasTrabajo) {
+        super(nombreCompleto, cedula, sexo, telefono);
+        this.correo = correo;
+        this.salario = salario;
+        this.tipoContrato = tipoContrato;
+        this.horasTrabajo = horasTrabajo;
+    }
+
     public Empleado() {
     }
 

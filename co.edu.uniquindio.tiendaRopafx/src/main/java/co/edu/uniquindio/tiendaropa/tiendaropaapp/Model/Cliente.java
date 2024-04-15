@@ -1,5 +1,7 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model;
 
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder.CalzadoBuilder;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder.ClienteBuilder;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
 import java.util.ArrayList;
@@ -12,9 +14,23 @@ public class Cliente extends Persona{
     private MetodoPago metodoPago;
     private List<Compra> comprasAsociadas = new ArrayList<>();
 
+    public static ClienteBuilder builder() {
+        return new ClienteBuilder();
+    }
+
     Tienda ownedByTienda;
 
     /* Constructor Vacío */
+
+    public Cliente(String nombreCompleto, String cedula, Sexo sexo, long telefono, int prendasCompradas, Date fechaUltimaCompra, MetodoPago metodoPago) {
+        super(nombreCompleto, cedula, sexo, telefono);
+        this.prendasCompradas = prendasCompradas;
+        this.fechaUltimaCompra = fechaUltimaCompra;
+        this.metodoPago = metodoPago;
+    }
+
+
+
     public Cliente() {
     }
 

@@ -12,6 +12,14 @@ public abstract class Persona {
     Tienda ownedByTienda;
 
     /* Constructor */
+
+    public Persona(String nombreCompleto, String cedula, Sexo sexo, long telefono) {
+        this.nombreCompleto = nombreCompleto;
+        this.cedula = cedula;
+        this.sexo = sexo;
+        this.telefono = telefono;
+    }
+
     public Persona() {
     }
 

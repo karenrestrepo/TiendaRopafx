@@ -1,5 +1,7 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder;
 
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Cliente;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Empleado;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Sexo;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.TipoContrato;
 
@@ -51,6 +53,10 @@ public class EmpleadoBuilder {
     public EmpleadoBuilder horasTrabajo(int horasTrabajo) {
         this.horasTrabajo = horasTrabajo;
         return this;
+    }
+
+    public Empleado build(){
+        return new Empleado(nombreCompleto, cedula, sexo, telefono, correo, salario, tipoContrato, horasTrabajo);
     }
 }
 
