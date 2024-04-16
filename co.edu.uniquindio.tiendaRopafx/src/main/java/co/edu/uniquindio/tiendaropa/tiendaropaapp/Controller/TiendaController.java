@@ -159,10 +159,14 @@ public class TiendaController {
     void onEliminarEmpleado(ActionEvent event) {
         eliminarEmpleado();
 
+
     }
 
     private void eliminarEmpleado() {
-        modelFactory.deleteEmpleado(txtCedulaEmpleado.getText());
+
+        String cedulaEmpleadoEliminado = txtCedulaEmpleado.getText();
+        modelFactory.deleteEmpleado(cedulaEmpleadoEliminado);
+        listaEmpleado.removeIf(empleado -> empleado.getCedula().equals(cedulaEmpleadoEliminado));
 
 
     }
