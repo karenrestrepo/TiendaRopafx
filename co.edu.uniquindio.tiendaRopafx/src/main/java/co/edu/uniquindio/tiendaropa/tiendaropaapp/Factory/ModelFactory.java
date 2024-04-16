@@ -176,4 +176,8 @@ public class  ModelFactory {
     public boolean deleteEmpleado(String cedula) {
         return tienda.deleteEmpleado(cedula);
     }
+
+    public boolean actualizarEmpleado(Empleado empleadoActualizado) {
+        return tienda.actualizarEmpleado(empleadoActualizado);
+    }
 }

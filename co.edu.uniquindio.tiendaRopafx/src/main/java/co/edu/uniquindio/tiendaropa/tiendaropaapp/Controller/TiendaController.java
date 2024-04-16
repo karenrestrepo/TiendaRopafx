@@ -152,7 +152,21 @@ public class TiendaController {
 
     @FXML
     void onActualizarEmpleado(ActionEvent event) {
+        actualizarEmpleado();
 
+    }
+
+    private void actualizarEmpleado() {
+        if (empleadoSeleccionado != null) {
+            Empleado empleadoActualizado = construirDatosEmpleado();
+            if (modelFactory.actualizarEmpleado(empleadoActualizado)) {
+                int index = listaEmpleado.indexOf(empleadoSeleccionado);
+                listaEmpleado.set(index, empleadoActualizado);
+                mostrarMensaje("Notificación empleado", "Empleado actualizado", "El empleado se ha actualizado con éxito", Alert.AlertType.INFORMATION);
+            } else {
+                mostrarMensaje("Notificación empleado", "Error al actualizar", "No se pudo actualizar el empleado", Alert.AlertType.ERROR);
+            }
+        }
     }
 
     @FXML

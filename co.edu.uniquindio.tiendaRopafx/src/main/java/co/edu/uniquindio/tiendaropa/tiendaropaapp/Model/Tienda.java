@@ -134,4 +134,15 @@ public class Tienda /*implements ITienda*/ {
 
     }
 
+    public boolean actualizarEmpleado(Empleado empleadoActualizado) {
+        Empleado empleadoExistente = obtenerEmpleado(empleadoActualizado.getCedula());
+        if (empleadoExistente != null) {
+            int index = getListaEmpleados().indexOf(empleadoExistente);
+            getListaEmpleados().set(index, empleadoActualizado);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
