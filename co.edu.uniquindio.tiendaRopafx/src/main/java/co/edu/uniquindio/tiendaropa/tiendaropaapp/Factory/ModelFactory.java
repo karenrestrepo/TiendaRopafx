@@ -180,4 +180,8 @@ public class  ModelFactory {
     public boolean actualizarEmpleado(Empleado empleadoActualizado) {
         return tienda.actualizarEmpleado(empleadoActualizado);
     }
+
+    public boolean deleteCliente(String cedulaClienteEliminado) {
+        return tienda.eliminarCliente(cedulaClienteEliminado);
+    }
 }

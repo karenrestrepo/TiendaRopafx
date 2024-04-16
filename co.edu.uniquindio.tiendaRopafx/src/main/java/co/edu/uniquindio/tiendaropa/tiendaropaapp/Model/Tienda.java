@@ -145,4 +145,14 @@ public class Tienda /*implements ITienda*/ {
         }
     }
 
+    public boolean eliminarCliente(String cedulaClienteEliminado) {
+        Cliente clienteEncontrado= obtenerCliente(cedulaClienteEliminado);
+        if (clienteEncontrado == null) {
+            Cliente cliente = clienteEncontrado;
+            getListaClientes().remove(cliente);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -181,12 +181,21 @@ public class TiendaController {
         String cedulaEmpleadoEliminado = txtCedulaEmpleado.getText();
         modelFactory.deleteEmpleado(cedulaEmpleadoEliminado);
         listaEmpleado.removeIf(empleado -> empleado.getCedula().equals(cedulaEmpleadoEliminado));
-
+        mostrarMensaje("Notificación empleado", "Empleado eliminado", "El empleado se ha eliminado con éxito", Alert.AlertType.INFORMATION);
 
     }
 
     @FXML
     void onEliminararCliente(ActionEvent event) {
+        eliminarCliente();
+
+    }
+
+    private void eliminarCliente() {
+        String cedulaClienteEliminado = txtCedulaCliente.getText();
+        modelFactory.deleteCliente(cedulaClienteEliminado);
+        listaCliente.removeIf(cliente -> cliente.getCedula().equals(cedulaClienteEliminado));
+        mostrarMensaje("Notificación cliente", "Cliente eliminado", "El cliente se ha eliminado con éxito", Alert.AlertType.INFORMATION);
 
     }
 
