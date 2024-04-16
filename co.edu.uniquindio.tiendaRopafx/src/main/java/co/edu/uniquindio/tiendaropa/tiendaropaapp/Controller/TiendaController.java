@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Cliente;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Empleado;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Factory.ModelFactory;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Tienda;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ public class TiendaController {
     Cliente clienteSeleccionado;
     ObservableList<Empleado> listaEmpleado = FXCollections.observableArrayList();
     Empleado empleadoSeleccionado;
+    Tienda tienda;
     ModelFactory modelFactory = new ModelFactory();
 
     @FXML
@@ -28,6 +30,18 @@ public class TiendaController {
 
     @FXML
     private URL location;
+
+    @FXML
+    private Button btnActualizarCliente;
+
+    @FXML
+    private Button btnActualizarEmpleado;
+
+    @FXML
+    private Button btnEliminarCliente;
+
+    @FXML
+    private Button btnEliminarEmpleado;
 
     @FXML
     private Button btnAgregarCliente;
@@ -130,6 +144,33 @@ public class TiendaController {
 
     @FXML
     private TextField txtTipoContrato;
+
+    @FXML
+    void onActualizarCliente(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActualizarEmpleado(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onEliminarEmpleado(ActionEvent event) {
+        eliminarEmpleado();
+
+    }
+
+    private void eliminarEmpleado() {
+        modelFactory.deleteEmpleado(txtCedulaEmpleado.getText());
+
+
+    }
+
+    @FXML
+    void onEliminararCliente(ActionEvent event) {
+
+    }
 
     @FXML
     void onAgregarCliente(ActionEvent event) {

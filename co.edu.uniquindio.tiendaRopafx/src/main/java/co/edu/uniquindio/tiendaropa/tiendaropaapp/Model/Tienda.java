@@ -120,4 +120,18 @@ public class Tienda /*implements ITienda*/ {
         return empleado;
 
     }
+
+
+    public boolean deleteEmpleado(String cedula) {
+        Empleado empleadoEncontrado = obtenerEmpleado(cedula);
+        if (empleadoEncontrado == null) {
+            Empleado empleado = empleadoEncontrado;
+            getListaEmpleados().remove(empleado);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }
