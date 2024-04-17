@@ -172,7 +172,11 @@ public class TiendaController {
 
     @FXML
     void onFiltrar(ActionEvent event) {
+        filtrarValor();
 
+    }
+
+    private void filtrarValor() {
     }
 
     @FXML
@@ -357,8 +361,25 @@ public class TiendaController {
         tableEmpleado.setItems(listaEmpleado);
         listenerSelectionCliente();
         listenerSelectionEmpleado();
+        mostrarEmpleado();
 
 
+    }
+
+    private void mostrarEmpleado() {
+        txtFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filtrarTablas(newValue.toLowerCase());
+        });
+    }
+
+    private void filtrarTablas(String valorBusqueda) {
+        ObservableList<Empleado> empleadosFiltrados = FXCollections.observableArrayList();
+        for (Empleado empleado : listaEmpleado) {
+            if (empleado.getNombreCompleto().toLowerCase().contains(valorBusqueda)) {
+                empleadosFiltrados.add(empleado);
+            }
+        }
+        tableEmpleado.setItems(empleadosFiltrados);
     }
 
     private void listenerSelectionEmpleado() {
