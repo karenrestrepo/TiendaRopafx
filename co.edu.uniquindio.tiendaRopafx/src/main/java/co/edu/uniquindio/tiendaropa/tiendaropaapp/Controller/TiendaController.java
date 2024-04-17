@@ -48,6 +48,14 @@ public class TiendaController {
 
     @FXML
     private Button btnAgregarEmpleado;
+    @FXML
+    private Button btnFiltrar;
+
+    @FXML
+    private Button btnSalarioMayor;
+
+    @FXML
+    private Button btnTipoContrato;
 
     @FXML
     private TableView<Cliente> tableCliente;
@@ -135,6 +143,12 @@ public class TiendaController {
 
     @FXML
     private TextField txtSexoEmpleado;
+    @FXML
+    private TextField txtTipoContratoRequerido;
+    @FXML
+    private TextField txtSalarioMayor;
+    @FXML
+    private TextField txtFiltrar;
 
     @FXML
     private TextField txtTelefonoCliente;
@@ -153,6 +167,21 @@ public class TiendaController {
     @FXML
     void onActualizarEmpleado(ActionEvent event) {
         actualizarEmpleado();
+
+    }
+
+    @FXML
+    void onFiltrar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onSalarioMayor(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onTipoContrato(ActionEvent event) {
 
     }
 
