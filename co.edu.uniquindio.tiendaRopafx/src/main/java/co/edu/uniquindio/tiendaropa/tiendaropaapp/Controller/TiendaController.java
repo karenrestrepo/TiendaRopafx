@@ -2,6 +2,7 @@ package co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -181,6 +182,20 @@ public class TiendaController {
 
     @FXML
     void onSalarioMayor(ActionEvent event) {
+        obtenerSalarioMayor();
+
+    }
+
+    private void obtenerSalarioMayor() {
+        String salarioTexto = txtSalarioMayor.getText();
+        if (!salarioTexto.isEmpty()) {
+                int salarioBase = Integer.parseInt(salarioTexto);
+                List<Empleado> empleadosFiltrados = modelFactory.filtrarEmpleadosPorSalario(salarioBase);
+                ObservableList<Empleado> empleadosObservables = FXCollections.observableArrayList(empleadosFiltrados);
+                tableEmpleado.setItems(empleadosObservables);
+        } else {
+            mostrarMensaje("Error", "Valor inválido", "Por favor, ingrese un valor para el salario.", Alert.AlertType.ERROR);
+        }
 
     }
 
@@ -375,7 +390,14 @@ public class TiendaController {
     private void filtrarTablas(String valorBusqueda) {
         ObservableList<Empleado> empleadosFiltrados = FXCollections.observableArrayList();
         for (Empleado empleado : listaEmpleado) {
-            if (empleado.getNombreCompleto().toLowerCase().contains(valorBusqueda)) {
+            if (empleado.getNombreCompleto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    empleado.getCedula().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    empleado.getSexo().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    empleado.getTelefono().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    empleado.getCorreo().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    empleado.getSalario().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    empleado.getTipoContrato().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    empleado.getHorasTrabajo().toLowerCase().contains(valorBusqueda.toLowerCase())) {
                 empleadosFiltrados.add(empleado);
             }
         }

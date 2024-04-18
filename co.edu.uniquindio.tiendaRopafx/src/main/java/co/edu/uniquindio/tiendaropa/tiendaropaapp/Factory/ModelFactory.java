@@ -184,4 +184,8 @@ public class  ModelFactory {
     public boolean deleteCliente(String cedulaClienteEliminado) {
         return tienda.eliminarCliente(cedulaClienteEliminado);
     }
+
+    public List<Empleado> filtrarEmpleadosPorSalario(int salarioBase) {
+        return tienda.filtrarEmpleadosSalario(salarioBase);
+    }
 }

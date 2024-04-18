@@ -155,4 +155,16 @@ public class Tienda /*implements ITienda*/ {
             return false;
         }
     }
+
+    public List<Empleado> filtrarEmpleadosSalario(int salarioBase) {
+        List<Empleado> empleadosFiltrados = new ArrayList<>();
+        for (Empleado empleado : getListaEmpleados()) {
+            int salarioEmpleado = Integer.parseInt(empleado.getSalario());
+            if (salarioEmpleado > salarioBase) {
+                    empleadosFiltrados.add(empleado);
+            }
+
+        }
+        return empleadosFiltrados;
+    }
 }
