@@ -188,4 +188,8 @@ public class  ModelFactory {
     public List<Empleado> filtrarEmpleadosPorSalario(int salarioBase) {
         return tienda.filtrarEmpleadosSalario(salarioBase);
     }
+
+    public List<Empleado> filtrarEmpleadosPorTipoContrato(String tipoContrato) {
+        return tienda.filtrarEmpleadosPorTipoContrato(tipoContrato);
+    }
 }

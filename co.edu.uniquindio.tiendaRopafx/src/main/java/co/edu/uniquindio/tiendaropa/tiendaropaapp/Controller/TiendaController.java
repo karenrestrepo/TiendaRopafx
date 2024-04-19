@@ -201,7 +201,18 @@ public class TiendaController {
 
     @FXML
     void onTipoContrato(ActionEvent event) {
+        mostrarTipoContrato();
 
+    }
+    private void mostrarTipoContrato() {
+        String tipoContrato = txtTipoContratoRequerido.getText();
+        if (!tipoContrato.isEmpty()) {
+            List<Empleado> empleadosFiltrados = modelFactory.filtrarEmpleadosPorTipoContrato(tipoContrato);
+            ObservableList<Empleado> empleadosObservables = FXCollections.observableArrayList(empleadosFiltrados);
+            tableEmpleado.setItems(empleadosObservables);
+        } else {
+            mostrarMensaje("Error", "Valor vacío", "Por favor, ingrese un tipo de contrato.", Alert.AlertType.ERROR);
+        }
     }
 
     private void actualizarEmpleado() {

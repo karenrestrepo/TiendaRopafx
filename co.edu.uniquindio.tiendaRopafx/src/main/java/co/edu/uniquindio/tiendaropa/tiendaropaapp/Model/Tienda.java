@@ -167,4 +167,14 @@ public class Tienda /*implements ITienda*/ {
         }
         return empleadosFiltrados;
     }
+
+    public List<Empleado> filtrarEmpleadosPorTipoContrato(String tipoContrato) {
+        List<Empleado> empleadosFiltrados = new ArrayList<>();
+        for (Empleado empleado : getListaEmpleados()) {
+            if (empleado.getTipoContrato().equalsIgnoreCase(tipoContrato)) {
+                empleadosFiltrados.add(empleado);
+            }
+        }
+        return empleadosFiltrados;
+    }
 }
