@@ -21,7 +21,7 @@
                      <children>
                         <SplitPane dividerPositions="0.5035335689045937" layoutX="8.0" orientation="VERTICAL" prefHeight="568.0" prefWidth="867.0">
                            <items>
-                              <fx:include source="Cliente.fxml" />
+                              <fx:include source="Cliente.fxml"/>
                            </items>
                         </SplitPane>
                      </children>

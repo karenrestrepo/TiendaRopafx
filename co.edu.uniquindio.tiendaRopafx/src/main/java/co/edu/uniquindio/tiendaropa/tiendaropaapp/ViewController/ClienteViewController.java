@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller.ClienteController;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Cliente;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Factory.ModelFactory;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Empleado;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Tienda;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -83,7 +84,7 @@ public class ClienteViewController {
     private TextField txtSexoCliente;
 
     @FXML
-    private TextField txtFiltrar;
+    private TextField txtFiltrarCliente;
 
     @FXML
     private TextField txtTelefonoCliente;
@@ -91,16 +92,21 @@ public class ClienteViewController {
 
     @FXML
     void onActualizarCliente(ActionEvent event) {
+        actualizarCliente();
 
     }
 
-    @FXML
-    void onFiltrar(ActionEvent event) {
-        filtrarValor();
-
-    }
-
-    private void filtrarValor() {
+    private void actualizarCliente() {
+        if (clienteSeleccionado != null) {
+            Cliente clienteActualizado = construirDatosCliente();
+            if (clienteController.actualizarEmpleado(clienteActualizado)) {
+                int index = listaCliente.indexOf(clienteSeleccionado);
+                listaCliente.set(index, clienteActualizado);
+                mostrarMensaje("Notificación cliente", "Cliente actualizado", "El cliente se ha actualizado con éxito", Alert.AlertType.INFORMATION);
+            } else {
+                mostrarMensaje("Notificación cliente", "Error al actualizar", "No se pudo actualizar el cliente", Alert.AlertType.ERROR);
+            }
+        }
     }
 
     @FXML
@@ -188,9 +194,32 @@ public class ClienteViewController {
         tableCliente.getItems().clear();
         tableCliente.setItems(listaCliente);
         listenerSelectionCliente();
+        mostrarCliente();
 
 
 
+    }
+
+    private void mostrarCliente() {
+        txtFiltrarCliente.textProperty().addListener((observable, oldValue, newValue) -> {
+            filtrarTablas(newValue.toLowerCase());
+        });
+    }
+
+    private void filtrarTablas(String valorBusqueda) {
+        ObservableList<Cliente> clientesFiltrados = FXCollections.observableArrayList();
+        for (Cliente cliente : listaCliente) {
+            if (cliente.getNombreCompleto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    cliente.getCedula().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    cliente.getSexo().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    cliente.getTelefono().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    cliente.getMetodoPago().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    cliente.getFechaUltimaCompra().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    cliente.getPrendasCompradas().toLowerCase().contains(valorBusqueda.toLowerCase())) {
+                clientesFiltrados.add(cliente);
+            }
+        }
+        tableCliente.setItems(clientesFiltrados);
     }
 
     private void listenerSelectionCliente() {

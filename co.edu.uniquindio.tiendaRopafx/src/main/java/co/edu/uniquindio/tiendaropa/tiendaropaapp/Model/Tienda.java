@@ -177,4 +177,15 @@ public class Tienda /*implements ITienda*/ {
         }
         return empleadosFiltrados;
     }
+
+    public boolean actualizarCliente(Cliente clienteActualizado) {
+        Cliente clientesExistente = obtenerCliente(clienteActualizado.getCedula());
+        if (clientesExistente != null) {
+            int index = getListaClientes().indexOf(clientesExistente);
+            getListaClientes().set(index, clienteActualizado);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

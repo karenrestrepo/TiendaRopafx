@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.tiendaropa.tiendaropaapp.ViewController.EmpleadoViewController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.tiendaropa.tiendaropaapp.ViewController.EmpleadoViewController">
+   <children>
+      <SplitPane dividerPositions="0.4752650176678445" layoutY="5.0" orientation="VERTICAL" prefHeight="568.0" prefWidth="867.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="241.0" prefWidth="865.0">
+               <children>
+                  <Label layoutX="50.0" layoutY="125.0" text="Sexo:" />
+                  <TextField fx:id="txtNombreEmpleado" layoutX="111.0" layoutY="23.0" prefHeight="25.0" prefWidth="240.0" />
+                  <Button fx:id="btnAgregarEmpleado" layoutX="236.0" layoutY="228.0" mnemonicParsing="false" onAction="#onAgregarEmpleado" text="Agregar empleado" />
+                  <Label layoutX="48.0" layoutY="27.0" text="Nombre:" />
+                  <Label layoutX="48.0" layoutY="75.0" text="Cédula:" />
+                  <Label layoutX="47.0" layoutY="171.0" text="Teléfono:" />
+                  <Label layoutX="457.0" layoutY="27.0" text="Correo:" />
+                  <TextField fx:id="txtCorreoEmpleado" layoutX="551.0" layoutY="23.0" prefHeight="25.0" prefWidth="240.0" />
+                  <TextField fx:id="txtTelefonoEmpleado" layoutX="111.0" layoutY="168.0" prefHeight="25.0" prefWidth="240.0" />
+                  <TextField fx:id="txtSexoEmpleado" layoutX="111.0" layoutY="121.0" prefHeight="25.0" prefWidth="240.0" />
+                  <TextField fx:id="txtCedulaEmpleado" layoutX="111.0" layoutY="71.0" prefHeight="25.0" prefWidth="240.0" />
+                  <Separator layoutY="208.0" prefHeight="3.0" prefWidth="867.0" />
+                  <Label layoutX="456.0" layoutY="77.0" text="Salario:" />
+                  <TextField fx:id="txtSalarioEmpleado" layoutX="551.0" layoutY="73.0" prefHeight="25.0" prefWidth="240.0" />
+                  <Label layoutX="456.0" layoutY="125.0" text="Tipo de contrato:" />
+                  <TextField fx:id="txtTipoContrato" layoutX="551.0" layoutY="121.0" prefHeight="25.0" prefWidth="240.0" />
+                  <Label layoutX="456.0" layoutY="171.0" text="Horas de trabajo:" />
+                  <TextField fx:id="txtHorasTrabajoEmpleado" layoutX="551.0" layoutY="167.0" prefHeight="25.0" prefWidth="240.0" />
+                  <Button fx:id="btnActualizarEmpleado" layoutX="451.0" layoutY="228.0" mnemonicParsing="false" onAction="#onActualizarEmpleado" text="Actualizar empleado" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="863.0">
+               <children>
+                  <TableView fx:id="tableEmpleado" layoutX="-1.0" layoutY="71.0" prefHeight="179.0" prefWidth="865.0">
+                     <columns>
+                        <TableColumn fx:id="tcNombreEmpleado" prefWidth="235.0" text="Nombre" />
+                        <TableColumn fx:id="tcCedulaEmpleado" minWidth="0.0" prefWidth="75.0" text="Cédula" />
+                        <TableColumn fx:id="tcSexoEmpleado" prefWidth="76.0" text="Sexo" />
+                        <TableColumn fx:id="tcTelefonoEmpleado" text="Teléfono" />
+                        <TableColumn fx:id="tcCorreoEmpleado" prefWidth="148.0" text="Correo" />
+                        <TableColumn fx:id="tcSalarioEmpleado" prefWidth="74.0" text="Salario" />
+                        <TableColumn fx:id="tcTipoContratoEmpleado" prefWidth="84.0" text="Tipo contrato" />
+                        <TableColumn fx:id="tcHorasTrabajoEmpleado" prefWidth="92.0" text="Horas trabajo" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="btnEliminarEmpleado" layoutX="374.0" layoutY="260.0" mnemonicParsing="false" onAction="#onEliminarEmpleado" text="Eliminar empleado" />
+                  <TextField fx:id="txtFiltrar" layoutX="78.0" layoutY="24.0" prefHeight="25.0" prefWidth="380.0" />
+                  <Button fx:id="btnTipoContrato" layoutX="709.0" layoutY="10.0" mnemonicParsing="false" onAction="#onTipoContrato" text="Tipo contrato:" />
+                  <Button fx:id="btnSalarioMayor" layoutX="531.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSalarioMayor" text="Salario mayor a:" />
+                  <TextField fx:id="txtSalarioMayor" layoutX="531.0" layoutY="36.0" prefHeight="25.0" prefWidth="121.0" />
+                  <TextField fx:id="txtTipoContratoRequerido" layoutX="709.0" layoutY="36.0" prefHeight="25.0" prefWidth="142.0" />
+                  <Label layoutX="14.0" layoutY="28.0" text="Filtrar por:" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
 </AnchorPane>

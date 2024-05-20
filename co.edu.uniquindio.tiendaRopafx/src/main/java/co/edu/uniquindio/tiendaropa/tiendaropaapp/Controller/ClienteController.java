@@ -23,4 +23,8 @@ public class ClienteController {
     public boolean deleteCliente(String cedulaClienteEliminado) {
         return modelFactory.deleteCliente(cedulaClienteEliminado);
     }
+
+    public boolean actualizarEmpleado(Cliente clienteActualizado) {
+        return modelFactory.actualizarCliente(clienteActualizado);
+    }
 }

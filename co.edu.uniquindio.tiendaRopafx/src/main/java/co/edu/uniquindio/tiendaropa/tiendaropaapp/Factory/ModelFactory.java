@@ -192,4 +192,8 @@ public class  ModelFactory {
     public List<Empleado> filtrarEmpleadosPorTipoContrato(String tipoContrato) {
         return tienda.filtrarEmpleadosPorTipoContrato(tipoContrato);
     }
+
+    public boolean actualizarCliente(Cliente clienteActualizado) {
+        return tienda.actualizarCliente(clienteActualizado);
+    }
 }
