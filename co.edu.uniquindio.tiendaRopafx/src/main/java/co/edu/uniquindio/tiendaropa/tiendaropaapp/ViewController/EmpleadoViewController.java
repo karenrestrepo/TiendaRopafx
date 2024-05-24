@@ -1,15 +1,13 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.ViewController;
 
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller.EmpleadoController;
-import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Cliente;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Command.EliminarEmpleadoCommand;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Empleado;
-import co.edu.uniquindio.tiendaropa.tiendaropaapp.Factory.ModelFactory;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Tienda;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -37,6 +35,10 @@ public class EmpleadoViewController {
 
     @FXML
     private Button btnAgregarEmpleado;
+    @FXML
+    private Button btnDeshacerAccion;
+    @FXML
+    private Button btnRehacerAccion;
     @FXML
     private Button btnFiltrar;
 
@@ -99,9 +101,33 @@ public class EmpleadoViewController {
     private TextField txtTipoContrato;
 
     @FXML
+    void initialize() {
+        empleadoController = new EmpleadoController();
+        iniView();
+    }
+
+    private void iniView() {
+        iniDataBinding();
+        obtenerEmpleados();
+        tableEmpleado.getItems().clear();
+        tableEmpleado.setItems(listaEmpleado);
+        listenerSelectionEmpleado();
+        mostrarEmpleado();
+    }
+
+    @FXML
     void onActualizarEmpleado(ActionEvent event) {
         actualizarEmpleado();
 
+    }
+    @FXML
+    void onDeshacerAccion(ActionEvent event) {
+        deshacerAccion();
+    }
+
+    @FXML
+    void onRehacerAccion(ActionEvent event) {
+        rehacerAccion();
     }
 
     @FXML
@@ -164,17 +190,6 @@ public class EmpleadoViewController {
     @FXML
     void onEliminarEmpleado(ActionEvent event) {
         eliminarEmpleado();
-
-
-    }
-
-    private void eliminarEmpleado() {
-
-        String cedulaEmpleadoEliminado = txtCedulaEmpleado.getText();
-        empleadoController.deleteEmpleado(cedulaEmpleadoEliminado);
-        listaEmpleado.removeIf(empleado -> empleado.getCedula().equals(cedulaEmpleadoEliminado));
-        mostrarMensaje("Notificación empleado", "Empleado eliminado", "El empleado se ha eliminado con éxito", Alert.AlertType.INFORMATION);
-
     }
 
     @FXML
@@ -185,15 +200,16 @@ public class EmpleadoViewController {
 
     private void agregarEmpleado() {
         if (validarFormularioEmpleado()) {
-            Empleado empleado = construirDatosEmpleado();
-            if (empleadoController.agregarEmpleado(empleado)) {
-                listaEmpleado.add(empleado);
-                mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", Alert.AlertType.INFORMATION);
-                limpiarCamposEmpleado();
+            if (mostrarMensajeConfirmacion("¿Desea agregar este cliente?")) {
+                Empleado empleado = construirDatosEmpleado();
+                if (empleadoController.agregarEmpleado(empleado)) {
+                    listaEmpleado.add(empleado);
+                    mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", Alert.AlertType.INFORMATION);
+                    limpiarCamposEmpleado();
 
-            }else{
-                mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
-
+                }else{
+                    mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
+                }
             }
         }else {
             mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
@@ -232,24 +248,7 @@ public class EmpleadoViewController {
 
     }
 
-    @FXML
-    void initialize() {
-        empleadoController = new EmpleadoController();
-        iniView();
 
-
-    }
-
-    private void iniView() {
-        iniDataBinding();
-        obtenerEmpleados();
-        tableEmpleado.getItems().clear();
-        tableEmpleado.setItems(listaEmpleado);
-        listenerSelectionEmpleado();
-        mostrarEmpleado();
-
-
-    }
 
     private void mostrarEmpleado() {
         txtFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -336,4 +335,54 @@ public class EmpleadoViewController {
         }
     }
 
+    private void eliminarEmpleado() {
+        if (mostrarMensajeConfirmacion("¿Desea eliminar este empleado?")) {
+            EliminarEmpleadoCommand eliminarEmpleadoCommand = new EliminarEmpleadoCommand(empleadoController, empleadoSeleccionado, empleadoSeleccionado.getCedula());
+            empleadoController.executeCommand(eliminarEmpleadoCommand);
+            String cedulaEmpleadoEliminado = txtCedulaEmpleado.getText();
+            empleadoController.deleteEmpleado(cedulaEmpleadoEliminado);
+            listaEmpleado.removeIf(empleado -> empleado.getCedula().equals(cedulaEmpleadoEliminado));
+            tableEmpleado.refresh();
+            mostrarMensaje("Notificación empleado", "Empleado eliminado", "El empleado se ha eliminado con éxito", Alert.AlertType.INFORMATION);
+        }
+    }
+
+    private void deshacerAccion() {
+        if (!empleadoController.isExecutedCommandsEmpty()) {
+            empleadoController.undoCommand();
+            tableEmpleado.refresh();
+            agregarEmpleadoExistente();
+        } else {
+            mostrarMensaje("No hay comandos para deshacer",
+                    "No hay comandos para deshacer",
+                    "No puedes deshacer un comando porque no hay comandos que hayan sido ejecutados previamente.",
+                    Alert.AlertType.WARNING);
+        }
+    }
+
+    private void agregarEmpleadoExistente() {
+        if (mostrarMensajeConfirmacion("¿Desea agregar este cliente?")) {
+             empleadoSeleccionado = construirDatosEmpleado();
+            if (empleadoController.agregarEmpleadoExistente(empleadoSeleccionado)) {
+                listaEmpleado.add(empleadoSeleccionado);
+                mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", Alert.AlertType.INFORMATION);
+                limpiarCamposEmpleado();
+
+            }else{
+                mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
+            }
+        }
+    }
+
+    private void rehacerAccion() {
+        if (!empleadoController.isUndoneCommandsEmpty()) {
+            empleadoController.redoCommand();
+            tableEmpleado.refresh();
+        } else {
+            mostrarMensaje("No hay comandos para rehacer",
+                    "No hay comandos para rehacer",
+                    "No puedes rehacer un comando porque no hay comandos que hayan sido deshechos previamente.",
+                    Alert.AlertType.WARNING);
+        }
+    }
 }

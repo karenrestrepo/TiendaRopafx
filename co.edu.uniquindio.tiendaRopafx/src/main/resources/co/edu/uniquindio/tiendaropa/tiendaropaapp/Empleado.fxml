@@ -9,8 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.tiendaropa.tiendaropaapp.ViewController.EmpleadoViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.tiendaropa.tiendaropaapp.ViewController.EmpleadoViewController">
    <children>
       <SplitPane dividerPositions="0.4752650176678445" layoutY="5.0" orientation="VERTICAL" prefHeight="568.0" prefWidth="867.0">
          <items>
@@ -58,6 +57,8 @@
                   <TextField fx:id="txtSalarioMayor" layoutX="531.0" layoutY="36.0" prefHeight="25.0" prefWidth="121.0" />
                   <TextField fx:id="txtTipoContratoRequerido" layoutX="709.0" layoutY="36.0" prefHeight="25.0" prefWidth="142.0" />
                   <Label layoutX="14.0" layoutY="28.0" text="Filtrar por:" />
+                  <Button fx:id="btnDeshacerAccion" layoutX="15.0" layoutY="260.0" mnemonicParsing="false" onAction="#onDeshacerAccion" style="-fx-background-color: #FF0000;" text="Deshacer" />
+                  <Button fx:id="btnRehacerAccion" layoutX="92.0" layoutY="260.0" mnemonicParsing="false" onAction="#onRehacerAccion" style="-fx-background-color: #87CEEB;" text="Rehacer" />
                </children>
             </AnchorPane>
          </items>

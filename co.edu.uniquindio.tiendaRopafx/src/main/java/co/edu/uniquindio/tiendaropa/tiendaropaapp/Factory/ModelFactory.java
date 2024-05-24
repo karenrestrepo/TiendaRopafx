@@ -8,10 +8,8 @@ import java.util.List;
 
 public class  ModelFactory {
     public static ModelFactory modelFactory;
-
     private Tienda tienda;
-
-
+    private Empleado empleado;
 
     /*Constructor*/
     public ModelFactory(){
@@ -195,5 +193,17 @@ public class  ModelFactory {
 
     public boolean actualizarCliente(Cliente clienteActualizado) {
         return tienda.actualizarCliente(clienteActualizado);
+    }
+
+    public Empleado obtenerEmpleado(String cedula) {
+        return tienda.obtenerEmpleado(cedula);
+    }
+
+//    public boolean agregarEmpleadoExistente(Empleado empleado) {
+//        return tienda.agregarEmpleadoExistente(empleado);
+//    }
+
+    public boolean agregarEmpleadoExistente(Empleado empleadoAEliminar) {
+        return tienda.agregarEmpleadoExistente(empleadoAEliminar);
     }
 }

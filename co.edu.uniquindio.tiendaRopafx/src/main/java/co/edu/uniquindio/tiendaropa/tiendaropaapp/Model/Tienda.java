@@ -108,9 +108,8 @@ public class Tienda /*implements ITienda*/ {
         }
     }
 
-    private Empleado obtenerEmpleado(String cedula) {
+    public Empleado obtenerEmpleado(String cedula) {
         Empleado empleado = null;
-
         for (Empleado empleado1 : getListaEmpleados()) {
             if (empleado1.getCedula().equalsIgnoreCase(cedula)) {
                 empleado = empleado1;
@@ -118,7 +117,6 @@ public class Tienda /*implements ITienda*/ {
             }
         }
         return empleado;
-
     }
 
 
@@ -187,5 +185,15 @@ public class Tienda /*implements ITienda*/ {
         } else {
             return false;
         }
+    }
+
+    public boolean agregarEmpleadoExistente(Empleado empleado) {
+        Empleado empleadoEncontrado = obtenerEmpleado(empleado.getCedula());
+        if (empleadoEncontrado != null) {
+            getListaEmpleados().add(empleado);
+            return true;
+        }else {
+        return false;
+    }
     }
 }
