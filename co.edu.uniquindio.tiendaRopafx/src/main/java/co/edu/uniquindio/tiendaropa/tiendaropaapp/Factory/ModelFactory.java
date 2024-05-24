@@ -206,4 +206,8 @@ public class  ModelFactory {
     public boolean agregarEmpleadoExistente(Empleado empleadoAEliminar) {
         return tienda.agregarEmpleadoExistente(empleadoAEliminar);
     }
+
+    public List<Compra> obtenerCompra() {
+        return tienda.getListaCompras();
+    }
 }

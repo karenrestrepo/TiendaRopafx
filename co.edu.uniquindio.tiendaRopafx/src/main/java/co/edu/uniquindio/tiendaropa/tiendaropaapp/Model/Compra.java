@@ -10,6 +10,7 @@ public class Compra {
     private double totalCompra;
     public Empleado empleadoAsociado;
     public Cliente clienteAsociado;
+    public Producto productoAsociado;
 
     List<DetalleCompra> listaDetalleCompra = new ArrayList<>();
 
