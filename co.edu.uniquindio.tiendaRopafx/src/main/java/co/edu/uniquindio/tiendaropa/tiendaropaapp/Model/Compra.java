@@ -11,6 +11,7 @@ public class Compra {
     public Empleado empleadoAsociado;
     public Cliente clienteAsociado;
     public Producto productoAsociado;
+    public DetalleCompra detalleCompra;
 
     List<DetalleCompra> listaDetalleCompra = new ArrayList<>();
 
@@ -67,6 +68,22 @@ public class Compra {
 
     public void setListaDetalleCompra(List<DetalleCompra> listaDetalleCompra) {
         this.listaDetalleCompra = listaDetalleCompra;
+    }
+
+    public DetalleCompra getDetalleCompra() {
+        return detalleCompra;
+    }
+
+    public void setDetalleCompra(DetalleCompra detalleCompra) {
+        this.detalleCompra = detalleCompra;
+    }
+
+    public Producto getProductoAsociado() {
+        return productoAsociado;
+    }
+
+    public void setProductoAsociado(Producto productoAsociado) {
+        this.productoAsociado = productoAsociado;
     }
 
     public Tienda getOwnedByTienda() {

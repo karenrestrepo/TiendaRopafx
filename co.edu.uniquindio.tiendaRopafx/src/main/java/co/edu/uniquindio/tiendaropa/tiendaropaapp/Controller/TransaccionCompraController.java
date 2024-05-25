@@ -17,4 +17,8 @@ public class TransaccionCompraController {
     public List<Compra> obtenerEmpleados() {
         return modelFactory.obtenerCompra();
     }
+
+    public boolean crearCompra(Compra compra) {
+
+    }
 }

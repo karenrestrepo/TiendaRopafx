@@ -200,7 +200,7 @@ public class EmpleadoViewController {
 
     private void agregarEmpleado() {
         if (validarFormularioEmpleado()) {
-            if (mostrarMensajeConfirmacion("¿Desea agregar este cliente?")) {
+            if (mostrarMensajeConfirmacion("¿Desea agregar este empleado?")) {
                 Empleado empleado = construirDatosEmpleado();
                 if (empleadoController.agregarEmpleado(empleado)) {
                     listaEmpleado.add(empleado);

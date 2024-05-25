@@ -18,11 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 
 public class TransaccionCompraViewController {
@@ -136,7 +132,52 @@ public class TransaccionCompraViewController {
 
     @FXML
     void onAgregarCompra(ActionEvent event) {
+        agregarCompra();
 
+    }
+
+    private void agregarCompra() {
+        if (validarFormularioCompra()) {
+            if (mostrarMensajeConfirmacion("¿Desea crear esta compra?")) {
+                Compra compra = construirDatosCompra();
+                if (compraController.crearCompra(compra)) {
+                    listaCompra.add(compra);
+                    mostrarMensaje("Notificación compra", "Compra creada", "La compra se ha creado con éxito", Alert.AlertType.INFORMATION);
+                    limpiarCamposCompra();
+
+                }else{
+                    mostrarMensaje("Notificación compra", "Compra no creada", "La compra no se ha creado con éxito", Alert.AlertType.ERROR);
+                }
+            }
+        }else {
+            mostrarMensaje("Notificación compra", "Compra no creada", "La compra no se ha creado con éxito", Alert.AlertType.ERROR);
+        }
+    }
+
+    private Compra construirDatosCompra() {
+
+    }
+
+    private void limpiarCamposCompra() {
+        txtNombreEmpleado.setText("");
+        txtCedulaEmpleado.setText("");
+        txtCodigoCompra.setText("");
+        txtFechaCompra.setText("");
+        txtNombreCliente.setText("");
+        txtCedulaCliente.setText("");
+        txtProducto.setText("");
+        txtTipoProducto.setText("");
+        txtTallaProducto.setText("");
+        txtColorProducto.setText("");
+        txtCantidadProductos.setText("");
+    }
+
+    private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
 
     @FXML
@@ -180,9 +221,51 @@ public class TransaccionCompraViewController {
     }
 
     private void listenerSelectionCompra() {
+        tableCompra.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            compraSeleccionado = newSelection;
+            mostrarInformacionCompra(compraSeleccionado);
+        });
+    }
+
+    private void mostrarInformacionCompra(Compra compraSeleccionado) {
+        txtCodigoCompra.setText(compraSeleccionado.getCodigoCompra());
+        txtFechaCompra.setText(compraSeleccionado.getCodigoCompra());
+        txtCedulaCliente.setText(compraSeleccionado.getClienteAsociado().getNombreCompleto());
+        txtCedulaCliente.setText(compraSeleccionado.getClienteAsociado().getCedula());
+        txtNombreEmpleado.setText(compraSeleccionado.getEmpleadoAsociado().getNombreCompleto());
+        txtCedulaEmpleado.setText(compraSeleccionado.getEmpleadoAsociado().getCedula());
+        txtProducto.setText(compraSeleccionado.getProductoAsociado().getNombre());
+        txtTipoProducto.setText(compraSeleccionado.getProductoAsociado().getTipoProducto().name());
+        txtTallaProducto.setText(compraSeleccionado.getProductoAsociado().getTalla().name());
+        txtColorProducto.setText(compraSeleccionado.getProductoAsociado().getColor().name());
+        txtCantidadProductos.setText(String.valueOf(compraSeleccionado.getDetalleCompra().getCantidadComprado()));
+
     }
 
     private void mostrarCompra() {
+        txtFiltrarCompra.textProperty().addListener((observable, oldValue, newValue) -> {
+            filtrarTablas(newValue.toLowerCase());
+        });
+    }
+
+    private void filtrarTablas(String valorBusqueda) {
+        ObservableList<Compra> comprasFiltrados = FXCollections.observableArrayList();
+        for (Compra compra : listaCompra) {
+            if (compra.getCodigoCompra().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getFechaCompra().toString().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getClienteAsociado().getNombreCompleto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getClienteAsociado().getCedula().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getEmpleadoAsociado().getNombreCompleto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getEmpleadoAsociado().getCedula().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getProductoAsociado().getNombre().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getProductoAsociado().getTipoProducto().name().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getProductoAsociado().getTalla().name().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compra.getProductoAsociado().getColor().name().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    Integer.toString(compra.getDetalleCompra().getCantidadComprado()).contains(valorBusqueda)) {
+                comprasFiltrados.add(compra);
+            }
+        }
+        tableCompra.setItems(comprasFiltrados);
     }
 
 }
