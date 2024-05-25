@@ -2,6 +2,7 @@ package co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller;
 
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Factory.ModelFactory;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Compra;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Dto.CompraDto;
 
 import java.util.List;
 
@@ -14,11 +15,13 @@ public class TransaccionCompraController {
     }
 
 
-    public List<Compra> obtenerEmpleados() {
-        return modelFactory.obtenerCompra();
-    }
+
 
     public boolean crearCompra(Compra compra) {
 
+    }
+
+    public List<CompraDto> obtenerCompras() {
+        return modelFactory.obtenerCompra();
     }
 }

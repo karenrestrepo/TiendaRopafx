@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller.EmpleadoController;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller.TransaccionCompraController;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Compra;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Dto.CompraDto;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Empleado;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Tienda;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,8 +24,8 @@ import javafx.scene.control.*;
 
 public class TransaccionCompraViewController {
 
-    ObservableList<Compra> listaCompra = FXCollections.observableArrayList();
-    Compra compraSeleccionado;
+    ObservableList<CompraDto> listaCompra = FXCollections.observableArrayList();
+    CompraDto compraSeleccionado;
     Tienda tienda;
     TransaccionCompraController compraController;
 
@@ -53,40 +54,40 @@ public class TransaccionCompraViewController {
     private SplitMenuButton mbtnTalla;
 
     @FXML
-    private TableView<Compra> tableCompra;
+    private TableView<CompraDto> tableCompra;
 
     @FXML
-    private TableColumn<Compra, String> tcCantidad;
+    private TableColumn<CompraDto, String> tcCantidad;
 
     @FXML
-    private TableColumn<Compra, String> tcCedulaCliente;
+    private TableColumn<CompraDto, String> tcCedulaCliente;
 
     @FXML
-    private TableColumn<Compra, String> tcCedulaEmpleado;
+    private TableColumn<CompraDto, String> tcCedulaEmpleado;
 
     @FXML
-    private TableColumn<Compra, String> tcCodigoCompra;
+    private TableColumn<CompraDto, String> tcCodigoCompra;
 
     @FXML
-    private TableColumn<Compra, String> tcColor;
+    private TableColumn<CompraDto, String> tcColor;
 
     @FXML
-    private TableColumn<Compra, String> tcFecha;
+    private TableColumn<CompraDto, String> tcFecha;
 
     @FXML
-    private TableColumn<Compra, String> tcNombreCliente;
+    private TableColumn<CompraDto, String> tcNombreCliente;
 
     @FXML
-    private TableColumn<Compra, String> tcNombreEmpleado;
+    private TableColumn<CompraDto, String> tcNombreEmpleado;
 
     @FXML
-    private TableColumn<Compra, String> tcProducto;
+    private TableColumn<CompraDto, String> tcProducto;
 
     @FXML
-    private TableColumn<Compra, String> tcTalla;
+    private TableColumn<CompraDto, String> tcTalla;
 
     @FXML
-    private TableColumn<Compra, String> tcTipoProducto;
+    private TableColumn<CompraDto, String> tcTipoProducto;
 
     @FXML
     private TextField txtCantidadProductos;
@@ -202,22 +203,23 @@ public class TransaccionCompraViewController {
     }
 
     private void iniDataBinding() {
-        tcCodigoCompra.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigoCompra()));
-        tcFecha.setCellValueFactory(cellData -> new SimpleStringProperty(formatDate(cellData.getValue().getFechaCompra())));
-        tcNombreCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().clienteAsociado.getNombreCompleto()));
-        tcCedulaCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().clienteAsociado.getCedula()));
-        tcNombreEmpleado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().empleadoAsociado.getNombreCompleto()));
-        tcCedulaEmpleado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().empleadoAsociado.getCedula()));
+        tcCodigoCompra.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().codigoCompra()));
+        tcFecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().fechaCompra()));
+        tcNombreCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombreCliente()));
+        tcCedulaCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().cedulaCliente()));
+        tcNombreEmpleado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombreEmpleado()));
+        tcCedulaEmpleado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().cedulaEmpleado()));
+        tcProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().producto()));
+        tcTipoProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().tipoProducto()));
+        tcTalla.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().talla()));
+        tcColor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().color()));
+        tcCantidad.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().cantidadProductos()));
 
-    }
-
-    private String formatDate(Date fechaCompra) {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(ZonedDateTime.ofInstant(fechaCompra.toInstant(),
-                ZoneId.systemDefault()).toLocalDate());
     }
 
     private void obtenerCompras() {
-        listaCompra.addAll(compraController.obtenerEmpleados());
+
+        listaCompra.addAll(compraController.obtenerCompras());
     }
 
     private void listenerSelectionCompra() {
@@ -227,18 +229,18 @@ public class TransaccionCompraViewController {
         });
     }
 
-    private void mostrarInformacionCompra(Compra compraSeleccionado) {
-        txtCodigoCompra.setText(compraSeleccionado.getCodigoCompra());
-        txtFechaCompra.setText(compraSeleccionado.getCodigoCompra());
-        txtCedulaCliente.setText(compraSeleccionado.getClienteAsociado().getNombreCompleto());
-        txtCedulaCliente.setText(compraSeleccionado.getClienteAsociado().getCedula());
-        txtNombreEmpleado.setText(compraSeleccionado.getEmpleadoAsociado().getNombreCompleto());
-        txtCedulaEmpleado.setText(compraSeleccionado.getEmpleadoAsociado().getCedula());
-        txtProducto.setText(compraSeleccionado.getProductoAsociado().getNombre());
-        txtTipoProducto.setText(compraSeleccionado.getProductoAsociado().getTipoProducto().name());
-        txtTallaProducto.setText(compraSeleccionado.getProductoAsociado().getTalla().name());
-        txtColorProducto.setText(compraSeleccionado.getProductoAsociado().getColor().name());
-        txtCantidadProductos.setText(String.valueOf(compraSeleccionado.getDetalleCompra().getCantidadComprado()));
+    private void mostrarInformacionCompra(CompraDto compraSeleccionado) {
+        txtCodigoCompra.setText(compraSeleccionado.codigoCompra());
+        txtFechaCompra.setText(compraSeleccionado.fechaCompra());
+        txtCedulaCliente.setText(compraSeleccionado.nombreCliente());
+        txtCedulaCliente.setText(compraSeleccionado.cedulaCliente());
+        txtNombreEmpleado.setText(compraSeleccionado.nombreEmpleado());
+        txtCedulaEmpleado.setText(compraSeleccionado.cedulaEmpleado());
+        txtProducto.setText(compraSeleccionado.producto());
+        txtTipoProducto.setText(compraSeleccionado.tipoProducto());
+        txtTallaProducto.setText(compraSeleccionado.talla());
+        txtColorProducto.setText(compraSeleccionado.color());
+        txtCantidadProductos.setText(compraSeleccionado.cantidadProductos()); 
 
     }
 
@@ -249,20 +251,20 @@ public class TransaccionCompraViewController {
     }
 
     private void filtrarTablas(String valorBusqueda) {
-        ObservableList<Compra> comprasFiltrados = FXCollections.observableArrayList();
-        for (Compra compra : listaCompra) {
-            if (compra.getCodigoCompra().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getFechaCompra().toString().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getClienteAsociado().getNombreCompleto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getClienteAsociado().getCedula().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getEmpleadoAsociado().getNombreCompleto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getEmpleadoAsociado().getCedula().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getProductoAsociado().getNombre().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getProductoAsociado().getTipoProducto().name().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getProductoAsociado().getTalla().name().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compra.getProductoAsociado().getColor().name().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    Integer.toString(compra.getDetalleCompra().getCantidadComprado()).contains(valorBusqueda)) {
-                comprasFiltrados.add(compra);
+        ObservableList<CompraDto> comprasFiltrados = FXCollections.observableArrayList();
+        for (CompraDto compraDto : listaCompra) {
+            if (compraDto.codigoCompra().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.fechaCompra().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.nombreCliente().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.cedulaCliente().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.nombreEmpleado().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.cedulaEmpleado().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.producto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.tipoProducto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.talla().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.color().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    compraDto.cantidadProductos().toLowerCase().contains(valorBusqueda)) {
+                comprasFiltrados.add(compraDto);
             }
         }
         tableCompra.setItems(comprasFiltrados);

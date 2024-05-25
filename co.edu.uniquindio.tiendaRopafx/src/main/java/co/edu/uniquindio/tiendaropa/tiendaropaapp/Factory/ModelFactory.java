@@ -1,8 +1,10 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Factory;
 
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.*;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Dto.CompraDto;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -207,7 +209,30 @@ public class  ModelFactory {
         return tienda.agregarEmpleadoExistente(empleadoAEliminar);
     }
 
-    public List<Compra> obtenerCompra() {
-        return tienda.getListaCompras();
+    public List<CompraDto> obtenerCompra() {
+        List<Compra> compraList = tienda.getListaCompras();
+        List<CompraDto> compraDtoList = new ArrayList<>();
+
+        for (Compra compra : compraList){
+            compraDtoList.add(buildCompraDto(compra));
+        }
+        return compraDtoList;
+    }
+
+    private CompraDto buildCompraDto(Compra compra) {
+        return new CompraDto(
+                compra.getCodigoCompra(),
+                compra.getFechaCompra().toString(),
+                compra.clienteAsociado.getNombreCompleto(),
+                compra.clienteAsociado.getCedula(),
+                compra.empleadoAsociado.getNombreCompleto(),
+                compra.empleadoAsociado.getNombreCompleto(),
+                compra.productoAsociado.getNombre(),
+                compra.productoAsociado.getTipoProducto().toString(),
+                compra.productoAsociado.getTalla().toString(),
+                compra.productoAsociado.getColor().toString(),
+                Integer.toString(compra.detalleCompra.getCantidadComprado())
+
+        );
     }
 }
