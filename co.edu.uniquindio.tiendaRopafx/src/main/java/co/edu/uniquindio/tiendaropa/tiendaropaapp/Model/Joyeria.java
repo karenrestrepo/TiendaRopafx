@@ -4,7 +4,6 @@ import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder.JoyeriaBuilder;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
 public class Joyeria extends Producto {
-    private TipoJoyeria tipoJoyeria;
 
     public static JoyeriaBuilder builder() {
         return new JoyeriaBuilder();
@@ -12,12 +11,10 @@ public class Joyeria extends Producto {
 
     /*Constructor*/
 
-    public Joyeria(TipoJoyeria tipoJoyeria) {
-        this.tipoJoyeria = tipoJoyeria;
+    public Joyeria() {
     }
 
-    public Joyeria(String nombre, String referencia, TipoCliente tipoCliente, TipoProducto tipoProducto, Talla talla, Color color, double precio, int cantidadDisponible, TipoJoyeria tipoJoyeria) {
-        super(nombre, referencia, tipoCliente, tipoProducto, talla, color, precio, cantidadDisponible);
-        this.tipoJoyeria = tipoJoyeria;
+    public Joyeria(String nombre, String referencia, TipoCliente tipoCliente, TipoProducto tipoProducto, Talla talla, Color color, double precio, int cantidadDisponible, co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Producto producto) {
+        super(nombre, referencia, tipoCliente, tipoProducto, talla, color, precio, cantidadDisponible, producto);
     }
 }

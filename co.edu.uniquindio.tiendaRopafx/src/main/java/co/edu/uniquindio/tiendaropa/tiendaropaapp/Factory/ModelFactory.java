@@ -3,6 +3,7 @@ package co.edu.uniquindio.tiendaropa.tiendaropaapp.Factory;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.*;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Dto.CompraDto;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Producto;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,30 @@ public class  ModelFactory {
     public ModelFactory(){
         tienda = new Tienda();
         inicializarDatos();
+        iniCompra();
+
+
+    }
+
+    private void iniCompra() {
+        Compra compra = new Compra();
+        compra.setCodigoCompra("FE-O1");
+        compra.setFechaCompra(new Date(24, 05, 05 ));
+        compra.setClienteAsociado(tienda.getListaClientes().get(0));
+        compra.setEmpleadoAsociado(tienda.getListaEmpleados().get(0));
+        compra.setProductoAsociado(tienda.getListaProductos().get(0));
+        compra.setDetalleCompra(tienda.getListaDetalleCompra().get(0));
+
+        Compra compra1 = new Compra();
+        compra1.setCodigoCompra("FE-O1");
+        compra1.setFechaCompra(new Date(24, 05, 06 ));
+        compra1.setClienteAsociado(tienda.getListaClientes().get(1));
+        compra1.setEmpleadoAsociado(tienda.getListaEmpleados().get(1));
+        compra1.setProductoAsociado(tienda.getListaProductos().get(1));
+        compra1.setDetalleCompra(tienda.getListaDetalleCompra().get(0));
+
+        tienda.getListaCompras().add(compra);
+        tienda.getListaCompras().add(compra1);
 
     }
 
@@ -37,7 +62,8 @@ public class  ModelFactory {
                 .color(Color.ROSADA)
                 .precio(25000)
                 .cantidadDisponible(12)
-                .tipoPrenda(TipoPrenda.BLUSA)
+                .producto(Producto.PRENDA)
+                .tipoProducto(TipoProducto.BLUSA)
                 .build();
 
         Prenda prenda2 = Prenda.builder()
@@ -48,7 +74,8 @@ public class  ModelFactory {
                 .color(Color.AZUL)
                 .precio(50000)
                 .cantidadDisponible(9)
-                .tipoPrenda(TipoPrenda.CAMISA)
+                .tipoProducto(TipoProducto.CAMISA)
+                .producto(Producto.PRENDA)
                 .build();
 
         Prenda prenda3 = Prenda.builder()
@@ -59,7 +86,8 @@ public class  ModelFactory {
                 .color(Color.NEGRA)
                 .precio(75000)
                 .cantidadDisponible(20)
-                .tipoPrenda(TipoPrenda.CHAQUETA)
+                .tipoProducto(TipoProducto.CHAQUETA)
+                .producto(Producto.PRENDA)
                 .build();
 
         Joyeria joyeria1 = Joyeria.builder()
@@ -70,7 +98,8 @@ public class  ModelFactory {
                 .color(Color.DORADO)
                 .precio(750000)
                 .cantidadDisponible(2)
-                .tipoJoyeria(TipoJoyeria.ANILLO)
+                .tipoProducto(TipoProducto.ANILLO)
+                .producto(Producto.JOYERIA)
                 .build();
 
         Joyeria joyeria2 = Joyeria.builder()
@@ -81,7 +110,8 @@ public class  ModelFactory {
                 .color(Color.PLATEADO)
                 .precio(50000)
                 .cantidadDisponible(10)
-                .tipoJoyeria(TipoJoyeria.COLLAR)
+                .tipoProducto(TipoProducto.COLLAR)
+                .producto(Producto.JOYERIA)
                 .build();
 
         Calzado calzado1 = Calzado.builder()
@@ -92,7 +122,8 @@ public class  ModelFactory {
                 .color(Color.LILA)
                 .precio(100000)
                 .cantidadDisponible(13)
-                .tipoCalzado(TipoCalzado.BOTA)
+                .tipoProducto(TipoProducto.BOTA)
+                .producto(Producto.CALZADO)
                 .build();
 
         Calzado calzado2 = Calzado.builder()
@@ -103,7 +134,8 @@ public class  ModelFactory {
                 .color(Color.AZUL)
                 .precio(160000)
                 .cantidadDisponible(8)
-                .tipoCalzado(TipoCalzado.TENIS)
+                .tipoProducto(TipoProducto.TENIS)
+                .producto(Producto.CALZADO)
                 .build();
 
         Cliente cliente1 = Cliente.builder()
@@ -148,10 +180,31 @@ public class  ModelFactory {
                 .horasTrabajo("8")
                 .build();
 
+        DetalleCompra detalleCompra = new DetalleCompra();
+        detalleCompra.setNumeroDetalle(111);
+        detalleCompra.setCantidadComprado(2);
+        detalleCompra.setValorTotal(20000);
+        detalleCompra.setProductoComprado("prendas, joyerías y calzado");
+
+        DetalleCompra detalleCompra1 = new DetalleCompra();
+        detalleCompra1.setNumeroDetalle(112);
+        detalleCompra1.setCantidadComprado(3);
+        detalleCompra1.setValorTotal(29900);
+        detalleCompra1.setProductoComprado("prendas, joyerías y calzado");
+
+        tienda.getListaDetalleCompra().add(detalleCompra);
+        tienda.getListaDetalleCompra().add(detalleCompra1);
         tienda.getListaClientes().add(cliente1);
         tienda.getListaClientes().add(cliente2);
         tienda.getListaEmpleados().add(empleado1);
         tienda.getListaEmpleados().add(empleado2);
+        tienda.getListaProductos().add(calzado1);
+        tienda.getListaProductos().add(calzado2);
+        tienda.getListaProductos().add(prenda1);
+        tienda.getListaProductos().add(prenda2);
+        tienda.getListaProductos().add(prenda3);
+        tienda.getListaProductos().add(joyeria1);
+        tienda.getListaProductos().add(joyeria2);
 
     }
 
@@ -226,13 +279,22 @@ public class  ModelFactory {
                 compra.clienteAsociado.getNombreCompleto(),
                 compra.clienteAsociado.getCedula(),
                 compra.empleadoAsociado.getNombreCompleto(),
-                compra.empleadoAsociado.getNombreCompleto(),
-                compra.productoAsociado.getNombre(),
+                compra.empleadoAsociado.getCedula(),
+                compra.productoAsociado.getProducto().toString(),
                 compra.productoAsociado.getTipoProducto().toString(),
                 compra.productoAsociado.getTalla().toString(),
                 compra.productoAsociado.getColor().toString(),
                 Integer.toString(compra.detalleCompra.getCantidadComprado())
 
         );
+    }
+
+    public boolean agregarCompra(CompraDto compraDto) {
+        Compra compra = buildCompra(compraDto);
+        return tienda.agregarCompra(compra);
+    }
+
+    private Compra buildCompra(CompraDto compraDto) {
+        return new Compra();
     }
 }

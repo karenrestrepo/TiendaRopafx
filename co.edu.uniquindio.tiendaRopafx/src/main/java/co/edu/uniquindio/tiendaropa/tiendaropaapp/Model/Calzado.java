@@ -4,7 +4,6 @@ import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Builder.CalzadoBuilder;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 
 public class Calzado extends Producto{
-    private TipoCalzado tipoCalzado;
 
     public static CalzadoBuilder builder() {
         return new CalzadoBuilder();
@@ -12,12 +11,10 @@ public class Calzado extends Producto{
 
     /*Constructor*/
 
-    public Calzado(TipoCalzado tipoCalzado) {
-        this.tipoCalzado = tipoCalzado;
+    public Calzado() {
     }
 
-    public Calzado(String nombre, String referencia, TipoCliente tipoCliente, TipoProducto tipoProducto, Talla talla, Color color, double precio, int cantidadDisponible, TipoCalzado tipoCalzado) {
-        super(nombre, referencia, tipoCliente, tipoProducto, talla, color, precio, cantidadDisponible);
-        this.tipoCalzado = tipoCalzado;
+    public Calzado(String nombre, String referencia, TipoCliente tipoCliente, TipoProducto tipoProducto, Talla talla, Color color, double precio, int cantidadDisponible, co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Producto producto) {
+        super(nombre, referencia, tipoCliente, tipoProducto, talla, color, precio, cantidadDisponible, producto);
     }
 }

@@ -1,5 +1,17 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion;
 
 public enum TipoProducto {
-    IMPORTADO, NACIONAL
+    PANTALON,
+    BLUSA,
+    VESTIDO,
+    CHAQUETA,
+    CAMISA,
+    ANILLO,
+    MANILLA,
+    COLLAR,
+    ARETES,
+    SANDALIA,
+    TENIS,
+    BOTA,
+    TACON
 }

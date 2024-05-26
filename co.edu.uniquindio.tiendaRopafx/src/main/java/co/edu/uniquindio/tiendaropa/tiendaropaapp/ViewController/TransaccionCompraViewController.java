@@ -6,6 +6,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller.EmpleadoController;
@@ -140,24 +141,61 @@ public class TransaccionCompraViewController {
     private void agregarCompra() {
         if (validarFormularioCompra()) {
             if (mostrarMensajeConfirmacion("¿Desea crear esta compra?")) {
-                Compra compra = construirDatosCompra();
-                if (compraController.crearCompra(compra)) {
-                    listaCompra.add(compra);
-                    mostrarMensaje("Notificación compra", "Compra creada", "La compra se ha creado con éxito", Alert.AlertType.INFORMATION);
-                    limpiarCamposCompra();
-
-                }else{
-                    mostrarMensaje("Notificación compra", "Compra no creada", "La compra no se ha creado con éxito", Alert.AlertType.ERROR);
+                CompraDto compraDto = buildCompraDto();
+                if (compraController.agregarCompra(compraDto)){
+                    listaCompra.add(compraDto);
                 }
             }
-        }else {
-            mostrarMensaje("Notificación compra", "Compra no creada", "La compra no se ha creado con éxito", Alert.AlertType.ERROR);
+
         }
     }
 
-    private Compra construirDatosCompra() {
-
+    private boolean validarFormularioCompra() {
+        if (txtCodigoCompra.getText().isEmpty() ||
+        txtFechaCompra.getText().isEmpty() ||
+        txtNombreCliente.getText().isEmpty() ||
+        txtCedulaCliente.getText().isEmpty() ||
+        txtNombreEmpleado.getText().isEmpty() ||
+        txtCedulaEmpleado.getText().isEmpty() ||
+        txtProducto.getText().isEmpty() ||
+        txtTipoProducto.getText().isEmpty() ||
+        txtTallaProducto.getText().isEmpty() ||
+        txtColorProducto.getText().isEmpty() ||
+        txtCantidadProductos.getText().isEmpty()) {
+            return false;
+        }
+        return true;
     }
+
+    private boolean mostrarMensajeConfirmacion(String mensaje) {
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setHeaderText(null);
+        alert1.setTitle("Confirmación");
+        alert1.setContentText(mensaje);
+        Optional<ButtonType> action = alert1.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    private CompraDto buildCompraDto() {
+        return new CompraDto(
+                txtCodigoCompra.getText(),
+                txtFechaCompra.getText(),
+                txtNombreCliente.getText(),
+                txtCedulaCliente.getText(),
+                txtNombreEmpleado.getText(),
+                txtCedulaEmpleado.getText(),
+                txtProducto.getText(),
+                txtTipoProducto.getText(),
+                txtTallaProducto.getText(),
+                txtColorProducto.getText(),
+                txtCantidadProductos.getText()
+        );
+    }
+
 
     private void limpiarCamposCompra() {
         txtNombreEmpleado.setText("");
@@ -263,7 +301,7 @@ public class TransaccionCompraViewController {
                     compraDto.tipoProducto().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
                     compraDto.talla().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
                     compraDto.color().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
-                    compraDto.cantidadProductos().toLowerCase().contains(valorBusqueda)) {
+                    compraDto.cantidadProductos().toLowerCase().contains(valorBusqueda.toLowerCase())) {
                 comprasFiltrados.add(compraDto);
             }
         }
@@ -271,3 +309,4 @@ public class TransaccionCompraViewController {
     }
 
 }
+

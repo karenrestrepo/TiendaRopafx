@@ -13,7 +13,7 @@ public class JoyeriaBuilder {
     protected Color color;
     protected double precio;
     protected int cantidadDisponible;
-    protected TipoJoyeria tipoJoyeria;
+    protected Producto producto;
 
     public JoyeriaBuilder nombre(String nombre) {
         this.nombre = nombre;
@@ -55,12 +55,12 @@ public class JoyeriaBuilder {
         return this;
     }
 
-    public JoyeriaBuilder tipoJoyeria(TipoJoyeria tipoJoyeria) {
-        this.tipoJoyeria = tipoJoyeria;
+    public JoyeriaBuilder producto(Producto producto) {
+        this.producto = producto;
         return this;
     }
 
     public Joyeria build(){
-        return new Joyeria(nombre, referencia, tipoCliente, tipoProducto, talla, color,precio, cantidadDisponible, tipoJoyeria);
+        return new Joyeria(nombre, referencia, tipoCliente, tipoProducto, talla, color,precio, cantidadDisponible, producto);
     }
 }

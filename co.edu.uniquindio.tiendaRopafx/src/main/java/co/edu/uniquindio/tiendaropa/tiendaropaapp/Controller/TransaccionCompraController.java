@@ -15,13 +15,11 @@ public class TransaccionCompraController {
     }
 
 
-
-
-    public boolean crearCompra(Compra compra) {
-
-    }
-
     public List<CompraDto> obtenerCompras() {
         return modelFactory.obtenerCompra();
+    }
+
+    public boolean agregarCompra(CompraDto compraDto) {
+        return  modelFactory.agregarCompra(compraDto);
     }
 }

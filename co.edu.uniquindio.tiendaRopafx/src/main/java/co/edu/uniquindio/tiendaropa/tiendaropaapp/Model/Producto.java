@@ -11,6 +11,7 @@ public abstract class Producto /*implements IProducto */{
     private Color color;
     private double precio;
     private int cantidadDisponible;
+    private co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Producto producto;
     Tienda ownedByTienda;
     private final double IMPUESTO = 0.19;
     private final double IMPUESTO_ADICIONAL = 0.03;
@@ -20,7 +21,7 @@ public abstract class Producto /*implements IProducto */{
     }
 
     public Producto(String nombre, String referencia, TipoCliente tipoCliente, TipoProducto tipoProducto,
-                    Talla talla, Color color, double precio, int cantidadDisponible) {
+                    Talla talla, Color color, double precio, int cantidadDisponible, co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Producto producto) {
         this.nombre = nombre;
         this.referencia = referencia;
         this.tipoCliente = tipoCliente;
@@ -29,6 +30,7 @@ public abstract class Producto /*implements IProducto */{
         this.color = color;
         this.precio = precio;
         this.cantidadDisponible = cantidadDisponible;
+        this.producto = producto;
     }
 
     /* Getters and Setters */
@@ -96,6 +98,14 @@ public abstract class Producto /*implements IProducto */{
         this.ownedByTienda = ownedByTienda;
     }
 
+    public co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Producto producto) {
+        this.producto = producto;
+    }
+
     public TipoProducto getTipoProducto() {
         return tipoProducto;
     }
@@ -121,10 +131,10 @@ public abstract class Producto /*implements IProducto */{
     public double calcularPrecioBase() {
         double precioBase = getPrecio();
         double precioFinal = 0.0;
-        if (getTipoProducto() == TipoProducto.IMPORTADO) {
+        if (getTipoProducto() == TipoProducto.ANILLO) {
             precioFinal = precioBase + (precioBase * (IMPUESTO + IMPUESTO_ADICIONAL));
         }
-        if (getTipoProducto() == TipoProducto.NACIONAL){
+        if (getTipoProducto() == TipoProducto.PANTALON){
             precioFinal = precioBase + (precioBase * IMPUESTO);
         }
         return precioFinal;

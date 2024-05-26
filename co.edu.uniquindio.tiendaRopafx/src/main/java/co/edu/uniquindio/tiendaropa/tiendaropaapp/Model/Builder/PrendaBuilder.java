@@ -6,16 +6,22 @@ import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Prenda;
 public class PrendaBuilder {
     protected String nombre;
     protected String referencia;
+    protected Producto producto;
     protected TipoCliente tipoCliente;
     protected TipoProducto tipoProducto;
     protected Talla talla;
     protected Color color;
     protected double precio;
     protected int cantidadDisponible;
-    protected TipoPrenda tipoPrenda;
+
 
     public PrendaBuilder nombre(String nombre) {
         this.nombre = nombre;
+        return this;
+    }
+
+    public PrendaBuilder producto(Producto producto) {
+        this.producto = producto;
         return this;
     }
 
@@ -54,12 +60,7 @@ public class PrendaBuilder {
         return this;
     }
 
-    public PrendaBuilder tipoPrenda(TipoPrenda tipoPrenda) {
-        this.tipoPrenda = tipoPrenda;
-        return this;
-    }
-
     public Prenda build(){
-        return new Prenda(nombre, referencia, tipoCliente, tipoProducto, talla, color,precio, cantidadDisponible, tipoPrenda);
+        return new Prenda(nombre, referencia, tipoCliente, tipoProducto, talla, color,precio, cantidadDisponible, producto);
     }
 }

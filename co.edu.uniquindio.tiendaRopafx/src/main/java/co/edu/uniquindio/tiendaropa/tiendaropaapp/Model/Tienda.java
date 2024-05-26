@@ -196,5 +196,7 @@ public class Tienda /*implements ITienda*/ {
         return false;
     }
     }
-    
+
+    public boolean agregarCompra(Compra compra) {
+    }
 }

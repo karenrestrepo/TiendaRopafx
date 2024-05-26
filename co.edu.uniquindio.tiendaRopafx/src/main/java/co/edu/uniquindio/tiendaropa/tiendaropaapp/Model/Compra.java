@@ -21,6 +21,8 @@ public class Compra {
     public Compra() {
     }
 
+
+
     /* Getters and Setters */
     public String getCodigoCompra() {
         return codigoCompra;

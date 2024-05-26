@@ -14,7 +14,7 @@ public class CalzadoBuilder {
     protected Color color;
     protected double precio;
     protected int cantidadDisponible;
-    protected TipoCalzado tipoCalzado;
+    protected Producto producto;
 
     public CalzadoBuilder nombre(String nombre) {
         this.nombre = nombre;
@@ -56,12 +56,12 @@ public class CalzadoBuilder {
         return this;
     }
 
-    public CalzadoBuilder tipoCalzado(TipoCalzado tipoCalzado) {
-        this.tipoCalzado = tipoCalzado;
+    public CalzadoBuilder producto(Producto producto) {
+        this.producto = producto;
         return this;
     }
 
     public Calzado build(){
-        return new Calzado(nombre, referencia, tipoCliente, tipoProducto, talla, color,precio, cantidadDisponible, tipoCalzado);
+        return new Calzado(nombre, referencia, tipoCliente, tipoProducto, talla, color,precio, cantidadDisponible, producto);
     }
 }
