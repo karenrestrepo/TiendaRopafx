@@ -142,12 +142,33 @@ public class TransaccionCompraViewController {
         if (validarFormularioCompra()) {
             if (mostrarMensajeConfirmacion("¿Desea crear esta compra?")) {
                 CompraDto compraDto = buildCompraDto();
-                if (compraController.agregarCompra(compraDto)){
-                    listaCompra.add(compraDto);
-                }
-            }
+                Compra compra = compraController.agregarCompra(compraDto);
+                listaCompra.add(buildCompraDtoo(compra));
+                mostrarMensaje("Notificación compra", "Compra creado", "La compra se ha creado con éxito", Alert.AlertType.INFORMATION);
+                    limpiarCamposCompra();
 
+                }else{
+                    mostrarMensaje("Notificación compra", "Compra no creado", "La compra no se ha creado con éxito", Alert.AlertType.ERROR);
+                }
+            } else {
+            mostrarMensaje("Notificación compra", "Compra no creado", "La compra no se ha creado con éxito", Alert.AlertType.ERROR);
         }
+    }
+
+    private CompraDto buildCompraDtoo(Compra compra) {
+        return new CompraDto(
+                compra.getCodigoCompra(),
+                compra.getFechaCompra().toString(),
+                compra.clienteAsociado.getNombreCompleto(),
+                compra.clienteAsociado.getCedula(),
+                compra.empleadoAsociado.getNombreCompleto(),
+                compra.empleadoAsociado.getCedula(),
+                compra.productoAsociado.getProducto().toString(),
+                compra.productoAsociado.getTipoProducto().toString(),
+                compra.productoAsociado.getTalla().toString(),
+                compra.productoAsociado.getColor().toString(),
+                Integer.toString(compra.detalleCompra.getCantidadComprado())
+        );
     }
 
     private boolean validarFormularioCompra() {
@@ -270,7 +291,7 @@ public class TransaccionCompraViewController {
     private void mostrarInformacionCompra(CompraDto compraSeleccionado) {
         txtCodigoCompra.setText(compraSeleccionado.codigoCompra());
         txtFechaCompra.setText(compraSeleccionado.fechaCompra());
-        txtCedulaCliente.setText(compraSeleccionado.nombreCliente());
+        txtNombreCliente.setText(compraSeleccionado.nombreCliente());
         txtCedulaCliente.setText(compraSeleccionado.cedulaCliente());
         txtNombreEmpleado.setText(compraSeleccionado.nombreEmpleado());
         txtCedulaEmpleado.setText(compraSeleccionado.cedulaEmpleado());

@@ -19,7 +19,7 @@ public class TransaccionCompraController {
         return modelFactory.obtenerCompra();
     }
 
-    public boolean agregarCompra(CompraDto compraDto) {
+    public Compra agregarCompra(CompraDto compraDto) {
         return  modelFactory.agregarCompra(compraDto);
     }
 }

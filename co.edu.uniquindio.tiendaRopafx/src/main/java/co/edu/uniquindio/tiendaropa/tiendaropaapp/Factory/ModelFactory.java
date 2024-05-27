@@ -291,7 +291,7 @@ public class  ModelFactory {
         );
     }
 
-    public boolean agregarCompra(CompraDto compraDto) {
+    public Compra agregarCompra(CompraDto compraDto) {
         Compra compra = buildCompra(compraDto);
         return tienda.agregarCompra(compra);
     }

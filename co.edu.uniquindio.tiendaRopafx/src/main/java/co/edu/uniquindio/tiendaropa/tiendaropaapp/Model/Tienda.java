@@ -197,8 +197,9 @@ public class Tienda /*implements ITienda*/ {
     }
     }
 
-    public boolean agregarCompra(Compra compra) {
+    public Compra agregarCompra(Compra compra) {
         getListaCompras().add(compra);
-        return true;
+        return compra;
     }
+
 }
