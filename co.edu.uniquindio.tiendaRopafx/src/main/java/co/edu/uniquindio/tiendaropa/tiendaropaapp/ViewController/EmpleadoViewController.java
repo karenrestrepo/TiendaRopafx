@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller.EmpleadoController;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Command.EliminarEmpleadoCommand;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Empleado;
+import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Memento.EmpleadoMemento;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Tienda;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ public class EmpleadoViewController {
     Empleado empleadoSeleccionado;
     Tienda tienda;
     EmpleadoController empleadoController;
+    EmpleadoMemento empleadoMemento;
 
     @FXML
     private ResourceBundle resources;
@@ -350,8 +352,9 @@ public class EmpleadoViewController {
     private void deshacerAccion() {
         if (!empleadoController.isExecutedCommandsEmpty()) {
             empleadoController.undoCommand();
+            empleadoSeleccionado = empleadoController.obtenerEmpleados().getLast();
+            listaEmpleado.add(empleadoSeleccionado);
             tableEmpleado.refresh();
-            agregarEmpleadoExistente();
         } else {
             mostrarMensaje("No hay comandos para deshacer",
                     "No hay comandos para deshacer",
@@ -360,19 +363,14 @@ public class EmpleadoViewController {
         }
     }
 
-    private void agregarEmpleadoExistente() {
-        if (mostrarMensajeConfirmacion("¿Desea agregar este cliente?")) {
-             empleadoSeleccionado = construirDatosEmpleado();
-            if (empleadoController.agregarEmpleadoExistente(empleadoSeleccionado)) {
-                listaEmpleado.add(empleadoSeleccionado);
-                mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", Alert.AlertType.INFORMATION);
-                limpiarCamposEmpleado();
-
-            }else{
-                mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
-            }
-        }
-    }
+//    private void agregarEmpleadoExistente() {
+//        if (empleadoSeleccionado != null){
+//            listaEmpleado.add(empleadoSeleccionado);
+//            mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", Alert.AlertType.INFORMATION);
+//        }else{
+//            mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
+//        }
+//    }
 
     private void rehacerAccion() {
         if (!empleadoController.isUndoneCommandsEmpty()) {

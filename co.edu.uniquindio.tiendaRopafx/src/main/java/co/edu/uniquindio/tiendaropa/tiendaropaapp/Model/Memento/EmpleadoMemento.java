@@ -20,10 +20,10 @@ public class EmpleadoMemento extends Persona {
 
     public EmpleadoMemento(Empleado empleado) {
         super(empleado.getNombreCompleto(), empleado.getCedula(), empleado.getSexo(), empleado.getTelefono());
-        this.correo = correo;
-        this.salario = salario;
-        this.tipoContrato = tipoContrato;
-        this.horasTrabajo = horasTrabajo;
+        this.correo = empleado.getCorreo();
+        this.salario = empleado.getSalario();
+        this.tipoContrato = empleado.getTipoContrato();
+        this.horasTrabajo = empleado.getHorasTrabajo();
     }
 
     public EmpleadoMemento() {

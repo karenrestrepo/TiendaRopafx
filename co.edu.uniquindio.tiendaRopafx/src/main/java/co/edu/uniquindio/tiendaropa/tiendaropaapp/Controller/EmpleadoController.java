@@ -107,6 +107,10 @@ public class EmpleadoController {
     }
 
     public boolean agregarEmpleadoExistente(Empleado empleadoAEliminar) {
-        return modelFactory.agregarEmpleadoExistente(empleado);
+        for (Empleado empleado : modelFactory.obtenerEmpleados())
+            if (empleadoAEliminar.getCedula() == empleado.getCedula()) {
+                return modelFactory.agregarEmpleadoExistente(empleado);
+            }
+        return false;
     }
 }

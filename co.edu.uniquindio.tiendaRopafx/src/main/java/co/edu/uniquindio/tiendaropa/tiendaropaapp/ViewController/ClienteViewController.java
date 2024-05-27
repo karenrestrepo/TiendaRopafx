@@ -184,8 +184,6 @@ public class ClienteViewController {
     void initialize() {
         clienteController = new ClienteController();
         iniView();
-
-
     }
 
     private void iniView() {

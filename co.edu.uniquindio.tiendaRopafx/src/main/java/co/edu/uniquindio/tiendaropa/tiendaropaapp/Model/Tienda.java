@@ -198,5 +198,6 @@ public class Tienda /*implements ITienda*/ {
     }
 
     public boolean agregarCompra(Compra compra) {
+        return true;
     }
 }
