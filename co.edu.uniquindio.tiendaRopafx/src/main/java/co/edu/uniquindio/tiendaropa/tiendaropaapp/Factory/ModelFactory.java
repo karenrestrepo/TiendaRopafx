@@ -5,6 +5,8 @@ import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Dto.CompraDto;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.*;
 import co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Enumeracion.Producto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -295,6 +297,68 @@ public class  ModelFactory {
     }
 
     private Compra buildCompra(CompraDto compraDto) {
-        return new Compra();
+        try {
+            Compra compra = new Compra();
+
+            compra.setCodigoCompra(compraDto.codigoCompra());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaCompra = dateFormat.parse(compraDto.fechaCompra());
+            compra.setFechaCompra(fechaCompra);
+
+            Cliente cliente = new Cliente();
+            cliente.setNombreCompleto(compraDto.nombreCliente());
+            cliente.setCedula(compraDto.cedulaCliente());
+            compra.setClienteAsociado(cliente);
+
+            Empleado empleado = new Empleado();
+            empleado.setNombreCompleto(compraDto.nombreEmpleado());
+            empleado.setCedula(compraDto.cedulaEmpleado());
+            compra.setEmpleadoAsociado(empleado);
+
+            Calzado calzado = new Calzado();
+            Joyeria joyeria = new Joyeria();
+            Prenda prenda = new Prenda();
+            String tipoProducto = compraDto.producto();
+            if (tipoProducto.equalsIgnoreCase("Calzado")) {
+                calzado = new Calzado();
+                calzado.setProducto(Producto.valueOf(compraDto.producto()));
+                calzado.setTipoProducto(TipoProducto.valueOf((compraDto.tipoProducto())));
+                calzado.setTalla(Talla.valueOf(compraDto.talla()));
+                calzado.setColor(Color.valueOf(compraDto.color()));
+
+                compra.setProductoAsociado(calzado);
+
+            } else if (tipoProducto.equalsIgnoreCase("Joyería")) {
+                joyeria = new Joyeria();
+                joyeria.setProducto(Producto.valueOf(compraDto.producto()));
+                joyeria.setTipoProducto(TipoProducto.valueOf((compraDto.tipoProducto())));
+                joyeria.setTalla(Talla.valueOf(compraDto.talla()));
+                joyeria.setColor(Color.valueOf(compraDto.color()));
+
+                compra.setProductoAsociado(joyeria);
+
+            } else if (tipoProducto.equalsIgnoreCase("Prenda")) {
+                prenda = new Prenda();
+                prenda.setProducto(Producto.valueOf(compraDto.producto()));
+                prenda.setTipoProducto(TipoProducto.valueOf((compraDto.tipoProducto())));
+                prenda.setTalla(Talla.valueOf(compraDto.talla()));
+                prenda.setColor(Color.valueOf(compraDto.color()));
+
+                compra.setProductoAsociado(prenda);
+            }
+            else {
+                System.out.println("Tipo de producto no válido: " + tipoProducto);
+                return null;
+            }
+
+            DetalleCompra detalleCompra = new DetalleCompra();
+            detalleCompra.setCantidadComprado(Integer.parseInt(compraDto.cantidadProductos()));
+            compra.setDetalleCompra(detalleCompra);
+
+            return compra;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
