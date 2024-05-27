@@ -22,4 +22,8 @@ public class TransaccionCompraController {
     public Compra agregarCompra(CompraDto compraDto) {
         return  modelFactory.agregarCompra(compraDto);
     }
+
+    public String calcularPrecio(Compra compra) {
+        return modelFactory.calcularPrecio(compra);
+    }
 }

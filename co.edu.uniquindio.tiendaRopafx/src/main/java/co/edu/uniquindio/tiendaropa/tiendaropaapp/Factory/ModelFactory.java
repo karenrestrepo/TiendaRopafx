@@ -35,7 +35,7 @@ public class  ModelFactory {
         compra.setDetalleCompra(tienda.getListaDetalleCompra().get(0));
 
         Compra compra1 = new Compra();
-        compra1.setCodigoCompra("FE-O1");
+        compra1.setCodigoCompra("FE-O2");
         compra1.setFechaCompra(new Date(24, 05, 06 ));
         compra1.setClienteAsociado(tienda.getListaClientes().get(1));
         compra1.setEmpleadoAsociado(tienda.getListaEmpleados().get(1));
@@ -315,6 +315,7 @@ public class  ModelFactory {
             empleado.setCedula(compraDto.cedulaEmpleado());
             compra.setEmpleadoAsociado(empleado);
 
+
             Calzado calzado = new Calzado();
             Joyeria joyeria = new Joyeria();
             Prenda prenda = new Prenda();
@@ -360,5 +361,13 @@ public class  ModelFactory {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public String calcularPrecio(Compra compra) {
+        double precio = compra.getProductoAsociado().getTipoProducto().getPrecio();
+        int cantidad = compra.getDetalleCompra().getCantidadComprado();
+
+        return String.valueOf(precio * cantidad);
+
     }
 }

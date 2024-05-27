@@ -144,7 +144,7 @@ public class TransaccionCompraViewController {
                 CompraDto compraDto = buildCompraDto();
                 Compra compra = compraController.agregarCompra(compraDto);
                 listaCompra.add(buildCompraDtoo(compra));
-                mostrarMensaje("Notificación compra", "Compra creado", "La compra se ha creado con éxito", Alert.AlertType.INFORMATION);
+                mostrarMensajeFactura(compra);
                     limpiarCamposCompra();
 
                 }else{
@@ -154,6 +154,37 @@ public class TransaccionCompraViewController {
             mostrarMensaje("Notificación compra", "Compra no creado", "La compra no se ha creado con éxito", Alert.AlertType.ERROR);
         }
     }
+
+    private void mostrarMensajeFactura(Compra compra) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Compra realizada");
+        alert.setHeaderText("Información de la compra:");
+
+
+        String contenido = "Fecha de compra: " + compra.getFechaCompra() + "\n" +
+                "Cliente" + "\n" + "Nombre: " + compra.getClienteAsociado().getNombreCompleto() + "\n" +
+                "Cédula: " + compra.getClienteAsociado().getCedula() + "\n" +
+                "Empleado" + "\n" + "Nombre: " + compra.getEmpleadoAsociado().getNombreCompleto() + "\n" +
+                "Cédula: " + compra.getEmpleadoAsociado().getCedula() + "\n" +
+                "Producto: " + compra.getProductoAsociado().getProducto() + "\n" +
+                "Tipo de producto: " + compra.getProductoAsociado().getTipoProducto() + "\n" +
+                "Talla: " + compra.getProductoAsociado().getTalla() + "\n" +
+                "Color: " + compra.getProductoAsociado().getColor() + "\n" +
+                "Cantidad: " + compra.getDetalleCompra().getCantidadComprado() + "\n" +
+                "Precio: $" + compraController.calcularPrecio(compra);
+
+        alert.setContentText(contenido);
+
+        ButtonType enviarCorreoButton = new ButtonType("Enviar factura por correo");
+        alert.getButtonTypes().add(enviarCorreoButton);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == enviarCorreoButton) {
+                mostrarMensaje("Notificación envío de factura", "Factura electrónica de venta", "La factura se ha enviado correctamente al correo registrado", Alert.AlertType.INFORMATION);
+            }
+        });
+    }
+
 
     private CompraDto buildCompraDtoo(Compra compra) {
         return new CompraDto(

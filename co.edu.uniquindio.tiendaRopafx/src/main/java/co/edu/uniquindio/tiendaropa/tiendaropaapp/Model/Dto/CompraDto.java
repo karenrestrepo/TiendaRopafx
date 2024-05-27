@@ -13,5 +13,6 @@ public record CompraDto (
         String color,
         String cantidadProductos
 
+
 ){
 }
