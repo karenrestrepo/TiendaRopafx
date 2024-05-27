@@ -318,8 +318,8 @@ public class  ModelFactory {
             Calzado calzado = new Calzado();
             Joyeria joyeria = new Joyeria();
             Prenda prenda = new Prenda();
-            String tipoProducto = compraDto.producto();
-            if (tipoProducto.equalsIgnoreCase("Calzado")) {
+            String producto = compraDto.producto();
+            if (producto.equalsIgnoreCase("CALZADO")) {
                 calzado = new Calzado();
                 calzado.setProducto(Producto.valueOf(compraDto.producto()));
                 calzado.setTipoProducto(TipoProducto.valueOf((compraDto.tipoProducto())));
@@ -328,7 +328,7 @@ public class  ModelFactory {
 
                 compra.setProductoAsociado(calzado);
 
-            } else if (tipoProducto.equalsIgnoreCase("Joyería")) {
+            } else if (producto.equalsIgnoreCase("JOYERIA")) {
                 joyeria = new Joyeria();
                 joyeria.setProducto(Producto.valueOf(compraDto.producto()));
                 joyeria.setTipoProducto(TipoProducto.valueOf((compraDto.tipoProducto())));
@@ -337,7 +337,7 @@ public class  ModelFactory {
 
                 compra.setProductoAsociado(joyeria);
 
-            } else if (tipoProducto.equalsIgnoreCase("Prenda")) {
+            } else if (producto.equalsIgnoreCase("PRENDA")) {
                 prenda = new Prenda();
                 prenda.setProducto(Producto.valueOf(compraDto.producto()));
                 prenda.setTipoProducto(TipoProducto.valueOf((compraDto.tipoProducto())));
@@ -347,7 +347,7 @@ public class  ModelFactory {
                 compra.setProductoAsociado(prenda);
             }
             else {
-                System.out.println("Tipo de producto no válido: " + tipoProducto);
+                System.out.println("Tipo de producto no válido: " + producto);
                 return null;
             }
 

@@ -198,23 +198,7 @@ public class Tienda /*implements ITienda*/ {
     }
 
     public boolean agregarCompra(Compra compra) {
-        Compra compraEncontrado = obtenerCompra(compra.getCodigoCompra());
-        if (compraEncontrado == null) {
-            getListaCompras().add(compra);
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    private Compra obtenerCompra(String codigoCompra) {
-        Compra compra = null;
-        for (Compra compra1 : getListaCompras()) {
-            if (compra1.getCodigoCompra().equalsIgnoreCase(codigoCompra)) {
-                compra = compra1;
-                break;
-            }
-        }
-        return compra;
+        getListaCompras().add(compra);
+        return true;
     }
 }
