@@ -27,7 +27,7 @@ public class Cliente extends Persona{
 
     }
 
-    public Cliente(String nombreCompleto, String cedula, String sexo, String telefono, String prendasCompradas, String fechaUltimaCompra, String metodoPago, String correo) {
+    public Cliente(String nombreCompleto, String cedula, String sexo, String telefono, String correo, String prendasCompradas, String fechaUltimaCompra, String metodoPago) {
         super(nombreCompleto, cedula, sexo, telefono);
         this.prendasCompradas = prendasCompradas;
         this.fechaUltimaCompra = fechaUltimaCompra;

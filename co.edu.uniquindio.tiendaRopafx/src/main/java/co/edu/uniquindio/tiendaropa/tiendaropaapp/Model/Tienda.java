@@ -235,4 +235,48 @@ public class Tienda /*implements ITienda*/ {
             return false;
         }
     }
+
+    public boolean agregarProducto(Producto producto) {
+        Producto productoEncontrado = obtenerProducto(producto.getReferencia());
+        if (productoEncontrado == null) {
+            getListaProductos().add(producto);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public Producto obtenerProducto(String referencia) {
+        Producto producto = null;
+        for (Producto producto1 : getListaProductos()) {
+            if (producto1.getReferencia().equalsIgnoreCase(referencia)) {
+                producto = producto1;
+                break;
+            }
+        }
+        return producto;
+    }
+
+    public boolean actualizarProducto(Producto productoActualizado) {
+        Producto productoExistente = obtenerProducto(productoActualizado.getReferencia());
+        if (productoExistente != null) {
+            int index = getListaProductos().indexOf(productoExistente);
+            getListaProductos().set(index, productoActualizado);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean deleteProducto(String referenciaProductoEliminado) {
+        Producto productoEncontrado= obtenerProducto(referenciaProductoEliminado);
+        if (productoEncontrado == null) {
+            Producto producto = productoEncontrado;
+            getListaProductos().remove(producto);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

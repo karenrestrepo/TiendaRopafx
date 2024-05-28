@@ -389,4 +389,20 @@ public class  ModelFactory {
     public boolean deleteCompra(String codigoCompraEliminado) {
         return tienda.deleteEmpleadoCompra(codigoCompraEliminado);
     }
+
+    public List<co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Producto> obtenerProducto() {
+        return tienda.getListaProductos();
+    }
+
+    public boolean agregarProducto(co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Producto producto) {
+        return tienda.agregarProducto(producto);
+    }
+
+    public boolean actualizarProducto(co.edu.uniquindio.tiendaropa.tiendaropaapp.Model.Producto productoActualizado) {
+    return tienda.actualizarProducto(productoActualizado);
+    }
+
+    public boolean deleteProducto(String referenciaProductoEliminado) {
+        return  tienda.deleteProducto(referenciaProductoEliminado);
+    }
 }

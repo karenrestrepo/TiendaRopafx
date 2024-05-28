@@ -44,10 +44,10 @@
                         <TableColumn fx:id="tcCedulaCliente" minWidth="0.0" prefWidth="65.0" text="Cédula" />
                         <TableColumn fx:id="tcSexoCliente" prefWidth="74.0" text="Sexo" />
                         <TableColumn fx:id="tcTelefonoCliente" prefWidth="74.0" text="Teléfono" />
-                        <TableColumn fx:id="tcProductosCompradosCliente" prefWidth="106.0" text="Correo" />
-                        <TableColumn fx:id="tcFechaUltimaCompraCliente" prefWidth="129.0" text="Pruductos comprados" />
-                        <TableColumn fx:id="tcMetodoPagoCliente" prefWidth="122.0" text="Fecha última compra" />
-                        <TableColumn fx:id="tcCorreoCliente" prefWidth="101.0" text="Método de pago" />
+                        <TableColumn fx:id="tcCorreoCliente" prefWidth="101.0" text="Correo" />
+                        <TableColumn fx:id="tcProductosCompradosCliente" prefWidth="130.0" text="Pruductos comprados" />
+                        <TableColumn fx:id="tcFechaUltimaCompraCliente" prefWidth="125.0" text="Fecha última compra" />
+                        <TableColumn fx:id="tcMetodoPagoCliente" prefWidth="102.0" text="Método de pago" />
                      </columns>
                   </TableView>
                   <Button fx:id="btnEliminarCliente" layoutX="383.0" layoutY="272.0" mnemonicParsing="false" onAction="#onEliminararCliente" text="Eliminar cliente" />

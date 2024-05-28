@@ -35,6 +35,19 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab text="Producto">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane layoutX="8.0" orientation="VERTICAL" prefHeight="568.0" prefWidth="867.0">
+                           <items>
+                              <fx:include source="Producto.fxml" />
+                           </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab text="Compra">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
