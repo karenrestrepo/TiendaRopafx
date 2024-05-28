@@ -46,6 +46,9 @@ public class TransaccionCompraViewController {
     private Button btnEliminarCompra;
 
     @FXML
+    private Button btnMostarCatalogo;
+
+    @FXML
     private SplitMenuButton mbtnColor;
 
     @FXML
@@ -125,6 +128,42 @@ public class TransaccionCompraViewController {
 
     @FXML
     private TextField txtTipoProducto;
+
+    @FXML
+    void onMostrarCatalogo(ActionEvent event) {
+        String catalogo = "Catálogo:\n\n" +
+                "Joyería (Producto):\n" +
+                "Tipo de productos...\n" +
+                "ANILLO - $90,000\n" +
+                "MANILLA - $35,000\n" +
+                "COLLAR - $45,000\n" +
+                "ARETES - $29,000\n\n" +
+                "Calzado (Producto):\n" +
+                "Tipo de productos...\n" +
+                "SANDALIA - $60,000\n" +
+                "TENIS - $160,000\n" +
+                "BOTA - $210,000\n" +
+                "TACON - $130,000\n\n" +
+                "Prenda (Producto):\n" +
+                "Tipo de productos...\n" +
+                "PANTALÓN - $100,000\n" +
+                "BLUSA - $25,000\n" +
+                "VESTIDO - $52,000\n" +
+                "CHAQUETA - $75,000\n" +
+                "CAMISA - $65,000\n\n" +
+                "Tallas: S, M, L, XL\n\n" +
+                "Colores: ROSADA, AZUL, LILA, NEGRA, DORADO, PLATEADO\n\n" +
+                "Nota informativa:\n" +
+                "El catálogo es de carácter informativo. No se pueden seleccionar los productos a comprar. \n" +
+                "Este catálogo se actualiza cada mes, la información no está en tiempo real.\n\n" +
+                "¡GRACIAS POR PREFERIRNOS!";
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Catálogo de Productos");
+        alert.setHeaderText(null);
+        alert.setContentText(catalogo);
+        alert.showAndWait();
+    }
 
 
     @FXML
