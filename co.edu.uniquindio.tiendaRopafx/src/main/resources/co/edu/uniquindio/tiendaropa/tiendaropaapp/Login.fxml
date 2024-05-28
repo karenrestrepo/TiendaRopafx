@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="600.0" style="-fx-background-color: #2E3030;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.tiendaropa.tiendaropaapp.Controller.LoginController">
+   <children>
+      <SplitPane dividerPositions="0.5818850267379678" prefHeight="449.0" prefWidth="600.0" style="-fx-background-color: #2E3030;">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="330.0" style="-fx-background-color: #2E3030;">
+               <children>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="34.0" strokeWidth="0.0" text="Registrarse" textAlignment="CENTER">
+                     <font>
+                        <Font name="Times New Roman Italic" size="23.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="14.0" layoutY="52.0" text="Correo: " textFill="#fffcfc">
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtCorreoUsuario" layoutX="84.0" layoutY="46.0" />
+                  <Label layoutX="14.0" layoutY="91.0" text="Contraseña:" textFill="#fffcfc">
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtContrasenaUsuario" layoutX="84.0" layoutY="85.0" />
+                  <Text fill="WHITE" layoutX="14.0" layoutY="222.0" strokeWidth="0.0" text="Iniciar sesión" textAlignment="CENTER">
+                     <font>
+                        <Font name="Times New Roman Italic" size="23.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="14.0" layoutY="241.0" text="Correo: " textFill="#fffcfc">
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="276.0" text="Contraseña:" textFill="#fffcfc">
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtCorreoSesionUsuario" layoutX="84.0" layoutY="236.0" />
+                  <TextField fx:id="txtContraseñaSesionUsuario" layoutX="84.0" layoutY="271.0" />
+                  <Button fx:id="btnRegistrarUsuario" layoutX="121.0" layoutY="161.0" mnemonicParsing="false" onAction="#onRegistrarUsuario" text="Registrarse" />
+                  <Label layoutX="14.0" layoutY="127.0" text="Tipo usuario:" textFill="#fffcfc">
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtTipoUsuario" layoutX="84.0" layoutY="122.0" />
+                  <Label layoutX="11.0" layoutY="311.0" text="Tipo usuario:" textFill="#fffcfc">
+                     <font>
+                        <Font name="Times New Roman Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtTipoSesionUsuario" layoutX="84.0" layoutY="305.0" />
+                  <Button fx:id="btnIniciarsesionUsuario" layoutX="116.0" layoutY="343.0" mnemonicParsing="false" onAction="#onIniciarsesionUsuario" text="Iniciar Sesión" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="281.0">
+               <children>
+                  <ImageView fitHeight="448.0" fitWidth="263.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../../../Imagenes%20Chidas/8d4e20e80261d6f95610568a1db991ce.jpg" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutY="84.0" strokeWidth="0.0" text="¡Bienvenidos!" textAlignment="CENTER">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="40.0" />
+                     </font>
+                     <effect>
+                        <MotionBlur angle="33.64" radius="12.94" />
+                     </effect>
+                  </Text>
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="7.0" layoutY="91.0" strokeWidth="0.0" text="¡Bienvenidos!" textAlignment="CENTER">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="40.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Text>
+                  <Text fill="WHITE" layoutX="23.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A una de las tiendas de ropa colombiana más esperadas por todos." textAlignment="JUSTIFY" wrappingWidth="205.96759033203125">
+                     <font>
+                        <Font name="Times New Roman Italic" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="23.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrate o autentificate para que puedas disfrutar de la experiencia tan chimba que es comprar en nuestra tienda exclusiva." textAlignment="JUSTIFY" wrappingWidth="205.96759033203125">
+                     <font>
+                        <Font name="Times New Roman Italic" size="13.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

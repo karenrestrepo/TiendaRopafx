@@ -16,6 +16,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+
 public class EmpleadoViewController {
     ObservableList<Empleado> listaEmpleado = FXCollections.observableArrayList();
     Empleado empleadoSeleccionado;
@@ -120,8 +122,8 @@ public class EmpleadoViewController {
     @FXML
     void onActualizarEmpleado(ActionEvent event) {
         actualizarEmpleado();
-
     }
+
     @FXML
     void onDeshacerAccion(ActionEvent event) {
         deshacerAccion();
@@ -376,6 +378,11 @@ public class EmpleadoViewController {
     private void rehacerAccion() {
         if (!empleadoController.isUndoneCommandsEmpty()) {
             empleadoController.redoCommand();
+            EliminarEmpleadoCommand eliminarEmpleadoCommand = new EliminarEmpleadoCommand(empleadoController, empleadoSeleccionado, empleadoSeleccionado.getCedula());
+            empleadoController.executeCommand(eliminarEmpleadoCommand);
+            String cedulaEmpleadoEliminado = txtCedulaEmpleado.getText();
+            empleadoController.deleteEmpleado(cedulaEmpleadoEliminado);
+            listaEmpleado.removeIf(empleado -> empleado.getCedula().equals(cedulaEmpleadoEliminado));
             tableEmpleado.refresh();
         } else {
             mostrarMensaje("No hay comandos para rehacer",
