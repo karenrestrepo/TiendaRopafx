@@ -193,7 +193,6 @@ public class EmpleadoViewController {
 
     @FXML
     void onEliminarEmpleado(ActionEvent event) {
-
         eliminarEmpleado();
     }
 
@@ -366,23 +365,11 @@ public class EmpleadoViewController {
         }
     }
 
-//    private void agregarEmpleadoExistente() {
-//        if (empleadoSeleccionado != null){
-//            listaEmpleado.add(empleadoSeleccionado);
-//            mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", Alert.AlertType.INFORMATION);
-//        }else{
-//            mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
-//        }
-//    }
-
     private void rehacerAccion() {
         if (!empleadoController.isUndoneCommandsEmpty()) {
             empleadoController.redoCommand();
-            EliminarEmpleadoCommand eliminarEmpleadoCommand = new EliminarEmpleadoCommand(empleadoController, empleadoSeleccionado, empleadoSeleccionado.getCedula());
-            empleadoController.executeCommand(eliminarEmpleadoCommand);
-            String cedulaEmpleadoEliminado = txtCedulaEmpleado.getText();
-            empleadoController.deleteEmpleado(cedulaEmpleadoEliminado);
-            listaEmpleado.removeIf(empleado -> empleado.getCedula().equals(cedulaEmpleadoEliminado));
+            empleadoSeleccionado = empleadoController.obtenerEmpleados().getLast();
+            listaEmpleado.removeIf(empleado -> empleado.getCedula().equals(empleadoSeleccionado.getCedula()));
             tableEmpleado.refresh();
         } else {
             mostrarMensaje("No hay comandos para rehacer",
