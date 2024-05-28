@@ -12,6 +12,7 @@ public class Cliente extends Persona{
     private String prendasCompradas;
     private String fechaUltimaCompra;
     private String metodoPago;
+    private String correo;
     private List<Compra> comprasAsociadas = new ArrayList<>();
 
     public static ClienteBuilder builder() {
@@ -20,19 +21,20 @@ public class Cliente extends Persona{
 
     Tienda ownedByTienda;
 
-    /* Constructor Vacío */
+    /* Constructor */
 
-    public Cliente(String nombreCompleto, String cedula, String sexo, String telefono, String prendasCompradas, String fechaUltimaCompra, String metodoPago) {
+    public Cliente(){
+
+    }
+
+    public Cliente(String nombreCompleto, String cedula, String sexo, String telefono, String prendasCompradas, String fechaUltimaCompra, String metodoPago, String correo) {
         super(nombreCompleto, cedula, sexo, telefono);
         this.prendasCompradas = prendasCompradas;
         this.fechaUltimaCompra = fechaUltimaCompra;
         this.metodoPago = metodoPago;
+        this.correo = correo;
     }
 
-
-
-    public Cliente() {
-    }
 
     /* Getters and Setters */
     public String getPrendasCompradas() {
@@ -49,6 +51,14 @@ public class Cliente extends Persona{
 
     public void setFechaUltimaCompra(String fechaUltimaCompra) {
         this.fechaUltimaCompra = fechaUltimaCompra;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getMetodoPago() {

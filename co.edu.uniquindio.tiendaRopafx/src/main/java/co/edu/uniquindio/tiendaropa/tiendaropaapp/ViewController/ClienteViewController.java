@@ -48,6 +48,9 @@ public class ClienteViewController {
     private TableColumn<Cliente, String> tcCedulaCliente;
 
     @FXML
+    private TableColumn<Cliente, String> tcCorreoCliente;
+
+    @FXML
     private TableColumn<Cliente, String> tcFechaUltimaCompraCliente;
 
     @FXML
@@ -67,6 +70,10 @@ public class ClienteViewController {
 
     @FXML
     private TextField txtCedulaCliente;
+
+    @FXML
+    private TextField txtCorreo;
+
 
     @FXML
     private TextField txtFechaUltimaCompraCliente;
@@ -155,6 +162,7 @@ public class ClienteViewController {
         txtCedulaCliente.setText("");
         txtSexoCliente.setText("");
         txtTelefonoCliente.setText("");
+        txtCorreo.setText("");
         txtProductosCompradosCliente.setText("");
         txtFechaUltimaCompraCliente.setText("");
         txtMetodoPagoCliente.setText("");
@@ -173,6 +181,7 @@ public class ClienteViewController {
                 .cedula(txtCedulaCliente.getText())
                 .sexo(txtSexoCliente.getText())
                 .telefono(txtTelefonoCliente.getText())
+                .correo(txtCorreo.getText())
                 .productosComprado(txtProductosCompradosCliente.getText())
                 .fechaUltimaCompra(txtFechaUltimaCompraCliente.getText())
                 .metodoPago(txtMetodoPagoCliente.getText())
@@ -211,6 +220,7 @@ public class ClienteViewController {
                     cliente.getCedula().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
                     cliente.getSexo().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
                     cliente.getTelefono().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
+                    cliente.getCorreo().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
                     cliente.getMetodoPago().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
                     cliente.getFechaUltimaCompra().toLowerCase().contains(valorBusqueda.toLowerCase()) ||
                     cliente.getPrendasCompradas().toLowerCase().contains(valorBusqueda.toLowerCase())) {
@@ -233,6 +243,7 @@ public class ClienteViewController {
             txtCedulaCliente.setText(clienteSeleccionado.getCedula());
             txtSexoCliente.setText(clienteSeleccionado.getSexo());
             txtTelefonoCliente.setText(clienteSeleccionado.getTelefono());
+            txtCorreo.setText(clienteSeleccionado.getCorreo());
             txtProductosCompradosCliente.setText(clienteSeleccionado.getPrendasCompradas());
             txtFechaUltimaCompraCliente.setText(clienteSeleccionado.getFechaUltimaCompra());
             txtMetodoPagoCliente.setText(clienteSeleccionado.getMetodoPago());
@@ -248,6 +259,7 @@ public class ClienteViewController {
         tcCedulaCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
         tcSexoCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSexo()));
         tcTelefonoCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
+        tcCorreoCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
         tcProductosCompradosCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrendasCompradas()));
         tcFechaUltimaCompraCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFechaUltimaCompra()));
         tcMetodoPagoCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMetodoPago()));

@@ -12,6 +12,7 @@ public class ClienteBuilder {
     protected String cedula;
     protected String sexo;
     protected String telefono;
+    protected String correo;
     protected String productosComprados;
     protected String fechaUltimaCompra;
     protected String metodoPago;
@@ -36,6 +37,11 @@ public class ClienteBuilder {
         return this;
     }
 
+    public ClienteBuilder correo(String correo) {
+        this.correo = correo;
+        return this;
+    }
+
     public ClienteBuilder productosComprado(String productosComprados) {
         this.productosComprados = productosComprados;
         return this;
@@ -52,6 +58,6 @@ public class ClienteBuilder {
     }
 
     public Cliente build(){
-        return new Cliente(nombreCompleto, cedula, sexo, telefono, productosComprados, fechaUltimaCompra, metodoPago);
+        return new Cliente(nombreCompleto, cedula, sexo, telefono, correo, productosComprados, fechaUltimaCompra, metodoPago);
     }
 }
