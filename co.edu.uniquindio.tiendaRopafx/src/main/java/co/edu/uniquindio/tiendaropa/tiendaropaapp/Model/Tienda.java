@@ -202,4 +202,37 @@ public class Tienda /*implements ITienda*/ {
         return compra;
     }
 
+    public boolean actualizarCompra(Compra compra) {
+        Compra compraExistente = obtenerCompra(compra.getCodigoCompra());
+        if (compraExistente != null) {
+            int index = getListaCompras().indexOf(compraExistente);
+            getListaCompras().set(index, compra);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private Compra obtenerCompra(String codigoCompra) {
+        Compra compra = null;
+        for (Compra compra1 : getListaCompras()) {
+            if (compra1.getCodigoCompra().equalsIgnoreCase(codigoCompra)) {
+                compra = compra1;
+                break;
+            }
+        }
+        return compra;
+
+    }
+
+    public boolean deleteEmpleadoCompra(String codigoCompraEliminado) {
+        Compra compraEncontrada = obtenerCompra(codigoCompraEliminado);
+        if (compraEncontrada == null) {
+            Compra compra = compraEncontrada;
+            getListaCompras().remove(compra);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

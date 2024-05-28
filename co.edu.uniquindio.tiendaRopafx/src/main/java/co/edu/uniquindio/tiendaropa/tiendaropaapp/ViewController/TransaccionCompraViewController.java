@@ -129,7 +129,50 @@ public class TransaccionCompraViewController {
 
     @FXML
     void onActualizarCompra(ActionEvent event) {
+        actualizarCompra();
+    }
 
+    private void actualizarCompra() {
+        if (compraSeleccionado != null) {
+            CompraDto compraDtoActualizado = buildCompraDto();
+            if (compraController.actualizarCompra(compraDtoActualizado)) {
+                int index = listaCompra.indexOf(compraSeleccionado);
+                listaCompra.set(index, compraDtoActualizado);
+                mostrarMensajeNotaCredito(compraDtoActualizado);
+            } else {
+                mostrarMensaje("Notificación empleado", "Error al actualizar", "No se pudo actualizar el empleado", Alert.AlertType.ERROR);
+            }
+        }
+    }
+
+    private void mostrarMensajeNotaCredito(CompraDto compraDtoActualizado) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Actualización de la compra realizada");
+        alert.setHeaderText("Información de la nota crédito:");
+
+
+        String contenido = "Fecha de compra: " + compraDtoActualizado.fechaCompra() + "\n" +
+                "Cliente" + "\n" + "Nombre: " + compraDtoActualizado.nombreCliente() + "\n" +
+                "Cédula: " + compraDtoActualizado.cedulaCliente() + "\n" +
+                "Empleado" + "\n" + "Nombre: " + compraDtoActualizado.nombreEmpleado() + "\n" +
+                "Cédula: " + compraDtoActualizado.cedulaEmpleado() + "\n" +
+                "Producto: " + compraDtoActualizado.producto() + "\n" +
+                "Tipo de producto: " + compraDtoActualizado.tipoProducto() + "\n" +
+                "Talla: " + compraDtoActualizado.talla() + "\n" +
+                "Color: " + compraDtoActualizado.color() + "\n" +
+                "Cantidad: " + compraDtoActualizado.cantidadProductos() + "\n" +
+                "Precio: $" + compraController.calcularPrecioNota(compraDtoActualizado);
+
+        alert.setContentText(contenido);
+
+        ButtonType enviarCorreoButton = new ButtonType("Enviar nota crédito por correo");
+        alert.getButtonTypes().add(enviarCorreoButton);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == enviarCorreoButton) {
+                mostrarMensaje("Notificación envío de nota crédito", "Nota crédito electrónica", "La nota crédito se ha enviado correctamente al correo registrado", Alert.AlertType.INFORMATION);
+            }
+        });
     }
 
     @FXML
@@ -273,6 +316,15 @@ public class TransaccionCompraViewController {
 
     @FXML
     void onEliminararCompra(ActionEvent event) {
+        eliminararCompra();
+
+    }
+
+    private void eliminararCompra() {
+        String codigoCompraEliminado = txtCodigoCompra.getText();
+        compraController.deleteCompra(codigoCompraEliminado);
+        listaCompra.removeIf(compraDto -> compraDto.codigoCompra().equals(codigoCompraEliminado));
+        mostrarMensaje("Notificación compra", "Compra eliminada", "La compra se ha eliminado con éxito, a su correo le llegará la nota crédito electrónica reversando la factura", Alert.AlertType.INFORMATION);
 
     }
 

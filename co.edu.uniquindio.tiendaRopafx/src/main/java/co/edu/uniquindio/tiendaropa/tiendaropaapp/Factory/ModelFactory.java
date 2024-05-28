@@ -370,4 +370,21 @@ public class  ModelFactory {
         return String.valueOf(precio * cantidad);
 
     }
+
+    public boolean actualizarCompra(CompraDto compraDtoActualizado) {
+        Compra compra = buildCompra(compraDtoActualizado);
+        return tienda.actualizarCompra(compra);
+    }
+
+    public String calcularPrecioNota(CompraDto compraDtoActualizado) {
+        Compra compra = buildCompra(compraDtoActualizado);
+        double precio = compra.getProductoAsociado().getTipoProducto().getPrecio();
+        int cantidad = compra.getDetalleCompra().getCantidadComprado();
+
+        return String.valueOf(precio * cantidad);
+    }
+
+    public boolean deleteCompra(String codigoCompraEliminado) {
+        return tienda.deleteEmpleadoCompra(codigoCompraEliminado);
+    }
 }

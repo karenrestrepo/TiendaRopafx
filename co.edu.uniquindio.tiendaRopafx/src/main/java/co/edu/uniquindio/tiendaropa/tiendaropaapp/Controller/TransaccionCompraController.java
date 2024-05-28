@@ -26,4 +26,16 @@ public class TransaccionCompraController {
     public String calcularPrecio(Compra compra) {
         return modelFactory.calcularPrecio(compra);
     }
+
+    public boolean actualizarCompra(CompraDto compraDtoActualizado) {
+        return modelFactory.actualizarCompra(compraDtoActualizado);
+    }
+
+    public String calcularPrecioNota(CompraDto compraDtoActualizado) {
+        return modelFactory.calcularPrecioNota(compraDtoActualizado);
+    }
+
+    public void deleteCompra(String codigoCompraEliminado) {
+        modelFactory.deleteCompra(codigoCompraEliminado);
+    }
 }

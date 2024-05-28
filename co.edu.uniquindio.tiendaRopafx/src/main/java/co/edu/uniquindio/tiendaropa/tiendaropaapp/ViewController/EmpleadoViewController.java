@@ -191,6 +191,7 @@ public class EmpleadoViewController {
 
     @FXML
     void onEliminarEmpleado(ActionEvent event) {
+
         eliminarEmpleado();
     }
 
