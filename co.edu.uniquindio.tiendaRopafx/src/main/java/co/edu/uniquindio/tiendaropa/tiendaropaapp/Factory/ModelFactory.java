@@ -258,10 +258,6 @@ public class  ModelFactory {
         return tienda.obtenerEmpleado(cedula);
     }
 
-//    public boolean agregarEmpleadoExistente(Empleado empleado) {
-//        return tienda.agregarEmpleadoExistente(empleado);
-//    }
-
     public boolean agregarEmpleadoExistente(Empleado empleadoAEliminar) {
         return tienda.agregarEmpleadoExistente(empleadoAEliminar);
     }
