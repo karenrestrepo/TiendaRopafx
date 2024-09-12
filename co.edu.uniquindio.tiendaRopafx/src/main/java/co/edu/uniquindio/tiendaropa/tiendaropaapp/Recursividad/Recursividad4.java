@@ -1,5 +1,5 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Recursividad;
-
+//Sume las cifras de un número. Parámetros: int n
 
 public class Recursividad4 {
     public static void main(String[] args) {

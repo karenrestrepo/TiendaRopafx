@@ -1,5 +1,10 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Recursividad;
-
+// Número menor arreglo
+//El recorrido del arreglo se realiza de inicio a fin. El criterio de parada
+// es cuando inicio y fin son iguales.
+//Parámetros: vector[] (es el arreglo en el cual se encuentran los elementos),
+// inicio (Es el inicio del arreglo), fin (Es el fin del arreglo y su valor es
+// el tamaño del arreglo - 1).
 public class recursividad3 {
     public static void main(String[] args) {
         int[] vector = {12, 4, 7, 9, 1, 5, 3};

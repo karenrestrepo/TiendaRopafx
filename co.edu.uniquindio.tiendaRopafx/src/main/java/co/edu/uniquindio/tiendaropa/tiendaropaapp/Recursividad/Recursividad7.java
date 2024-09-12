@@ -1,5 +1,5 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Recursividad;
-
+//Buscar un elemento en un array de forma recursiva.
 public class Recursividad7 {
     public static void main(String[] args) {
         int[] array = {1, 2, 3, 4, 5};

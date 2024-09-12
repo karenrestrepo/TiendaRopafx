@@ -1,6 +1,16 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Recursividad;
 
 public class r {
+    public static void main(String[] args) {
+        int[] array = {5, 3, 8, 1, 9, 6};
+
+        // Llamada para ordenar el array de izquierda a derecha
+        ordenarRecursivo(array, 0);
+
+        // Llamada para imprimir el array ordenado
+        imprimirArray(array, array.length - 1);
+    }
+
     public static void ordenarRecursivo(int[] array, int inicio) {
         if (inicio == array.length - 1) {
             return; // Caso base: si estamos en el último elemento, terminamos
@@ -42,13 +52,4 @@ public class r {
         imprimirArray(array, indice - 1);
     }
 
-    public static void main(String[] args) {
-        int[] array = {5, 3, 8, 1, 9, 6};
-
-        // Llamada para ordenar el array de izquierda a derecha
-        ordenarRecursivo(array, 0);
-
-        // Llamada para imprimir el array ordenado
-        imprimirArray(array, array.length - 1);
-    }
 }

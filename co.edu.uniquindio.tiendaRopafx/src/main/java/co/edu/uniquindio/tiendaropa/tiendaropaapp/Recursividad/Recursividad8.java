@@ -1,5 +1,5 @@
 package co.edu.uniquindio.tiendaropa.tiendaropaapp.Recursividad;
-
+//Recorrer una matriz de forma recursiva.
 public class Recursividad8 {
     public static void main(String[] args) {
         int [][] matriz = {
